@@ -9,7 +9,7 @@ app.get('/hello', function(req, res){
 });
 app.get('/send/users', function(req, res){
     var users=[
-        {username: 'adele', first: 'adele', last: 'sheldon'},
+        {username: 'adeles', first: 'adele', last: 'sheldon'},
         {username: 'sheldon', first: 'sheldon', last: 'cooper'}
     ];
     res.json(users);
