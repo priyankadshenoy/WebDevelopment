@@ -32,11 +32,11 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#">Register</a></li>
-                <li class="active"><a href="#">Login <span class="sr-only">(current)</span></a></li>
-                <!--<li><a href="#">Login</a></li>-->
+                <li><a href="register.html">Register</a></li>
+                <li class="disabled"><a href="#">Login <span class="sr-only">(current)</span></a></li>
+                <!--<li><a href="#">Login</a></li>
                 <li><a href="#">Username</a></li>
-                <li><a href="#">Logout</a></li>
+                <li><a href="#">Logout</a></li>-->
             </ul>
             <!--<form class="navbar-form navbar-right">
                 <input type="text" class="form-control" placeholder="Search...">
@@ -49,33 +49,33 @@
     <div class="row">
         <div class="col-sm-3 col-md-2 sidebar">
             <ul class="nav nav-sidebar">
-                <li><a href="#">Home   </a></li>
-                <li><a href="#">Profile</a></li>
-                <li><a href="#">Admin</a></li>
-                <li><a href="#">Forms</a></li>
+                <li><a href="home.html">Home   </a></li>
+                <li><a href="profile.html">Profile</a></li>
+                <li><a href="admin.html">Admin</a></li>
+                <li><a href="forms.html">Forms</a></li>
             </ul>
 
         </div>
     </div>
 </div>
 <div class="col-sm-7  col-md-offset-2 main">
-    <h1>Login</h1>
-    <form class="form-horizontal">
+    <h1>Login</h1><br>
+    <form class="form-horizontal" role="form">
         <div class="form-group">
-            <label for="inputEmail3" class="col-sm-2 control-label">Username</label>
-            <div class="col-sm-10">
+            <label for="inputEmail3" class="col-sm-3">Username: </label>
+            <div class="col-sm-8">
                 <input type="text" class="form-control" id="inputEmail3" placeholder="Username">
             </div>
         </div>
         <div class="form-group">
-            <label for="inputPassword3" class="col-sm-2 control-label">Password</label>
-            <div class="col-sm-10">
+            <label for="inputPassword3" class="col-sm-3">Password: </label>
+            <div class="col-sm-8">
                 <input type="password" class="form-control" id="inputPassword3" placeholder="Password">
             </div>
         </div>
         <div class="form-group">
-            <div class="col-sm-offset-2 col-sm-10">
-                <button type="submit" class="btn btn-default">Login</button>
+            <div class="col-sm-offset-3 col-sm-8">
+                <a href="profile.html" class="btn btn-default form-control">Login</a>
             </div>
         </div>
     </form>

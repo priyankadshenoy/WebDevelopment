@@ -1,0 +1,13 @@
+.text-justify {
+    text-align: justify;
+}
+
+.pull-left {
+    float: left ;
+}
+.col-6 {
+    float: left;
+    width: 150px;
+    position: relative;
+}
+
