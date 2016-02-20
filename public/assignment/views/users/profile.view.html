@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,7 +12,7 @@
     <!-- Bootstrap core CSS -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom styles for this template -->
-    <link href="css/dashboard.css" rel="stylesheet">
+    <link href="../../css/dashboard.css" rel="stylesheet">
 </head>
 
 <body>
@@ -32,11 +31,10 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
-                <li class="disabled"><a href="#">Register <span class="sr-only">(current)</span></a></li>
-                <!-- <li><a href="register.html">Register</a></li>-->
-                <li><a href="login.html">Login</a></li>
-                <!--<li><a href="#">Username</a></li>
-                <li><a href="#">Logout</a></li>-->
+                <!--<li><a href="#">Register</a></li>
+                <li><a href="#">Login</a></li>-->
+                <li><a href="#">Username</a></li>
+                <li><a href="#">Logout</a></li>
             </ul>
             <!--<form class="navbar-form navbar-right">
                 <input type="text" class="form-control" placeholder="Search...">
@@ -49,55 +47,62 @@
     <div class="row">
         <div class="col-sm-3 col-md-2 sidebar">
             <ul class="nav nav-sidebar">
-                <li><a href="home.html">Home   </a></li>
-                <li><a href="profile.html">Profile</a></li>
-                <li><a href="admin.html">Admin</a></li>
-                <li><a href="forms.html">Forms</a></li>
+                <!--<li class="active"><a href="#">Home <span class="sr-only">(current)</span></a></li>-->
+                <li><a href="../home/home.view.html">Home</a></li>
+                <li class="active"><a href="#">Profile <span class="sr-only">(current)</span></a></li>
+                <li><a href="../admin/admin.view.html">Admin</a></li>
+                <li><a href="../forms/forms.view.html">Forms</a></li>
             </ul>
 
         </div>
     </div>
 </div>
 <div class="col-sm-7  col-md-offset-2 main">
-    <h1>Register</h1><br>
+    <h1>Profile</h1><br>
     <form class="form-horizontal" role="form">
         <div class="form-group">
-            <label class="col-sm-3" >Username:</label>
+            <label class="pull-left col-sm-3" >Username:</label>
             <div class="col-sm-8">
                 <input type="text" class="form-control" id="username" placeholder="Username">
             </div>
         </div>
         <div class="form-group">
-            <label class="col-sm-3" for="pwd">Password:</label>
-            <div class="col-sm-8">
-                <input type="password" class="form-control" placeholder="Password">
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="col-sm-3" for="pwd" >Verify Password:</label>
+            <label class="pull-left col-sm-3" for="pwd">Password:</label>
             <div class="col-sm-8">
                 <input type="password" class="form-control" id="pwd" placeholder="Password">
             </div>
         </div>
         <div class="form-group">
-            <label class="col-sm-3" for="email">Email:</label>
+            <label class="pull-left col-sm-3" >First Name:</label>
+            <div class="col-sm-8">
+                <input type="text" class="form-control" id="fname" placeholder="First Name">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="pull-left col-sm-3" >Last Name:</label>
+            <div class="col-sm-8">
+                <input type="text" class="form-control" id="lname" placeholder="Last Name">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="pull-left col-sm-3" for="email">Email:</label>
             <div class="col-sm-8">
                 <input type="email" class="form-control" id="email" placeholder="Email">
             </div>
         </div>
         <div class="form-group">
             <div class="col-sm-offset-3 col-sm-8">
-                <a href="profile.html" class="btn btn-default form-control">Register</a>
+                <a href="profile.view.html" class="btn btn-default form-control">Update</a>
             </div>
         </div>
     </form>
 
 </div>
 </div>
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 </body>
 </html>
