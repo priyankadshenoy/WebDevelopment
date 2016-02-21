@@ -6,7 +6,16 @@
     function configuration($routeProvider) {
         $routeProvider
             .when("/admin", {
-                templateUrl: "admin/admin.view.html"
+                templateUrl: "views/admin/admin.view.html"
+            })
+            .when("/register", {
+                templateUrl: "views/users/register.view.html"
+            })
+            .when("/login", {
+                templateUrl: "views/admin/login.view.html"
+            })
+            .when("/profile", {
+                templateUrl: "views/users/profile.view.html"
             });
     }
 })();
