@@ -7,10 +7,9 @@
         .controller("FormController",FormController);
 
     function FormController($scope, FormService,$location, UserService) {
-
-        var currentAllUserForms= []; //Forms of the current user
-        var currentUser = null; //Current user is stored
-        var selectedFormIndex = -1; //the index of the form selected
+        var currentAllUserForms= [];
+        var currentUser = null;
+        var selectedFormIndex = -1;
 
         if (UserService.getCurrentUser() == null) {
             $location.path("/home");

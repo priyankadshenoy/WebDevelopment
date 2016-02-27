@@ -6,21 +6,15 @@
         .controller("ProfileController", ProfileController);
 
     function ProfileController($scope, $location, UserService){
-
-        //event declarations
         $scope.update = update;
+        var strc;
+        strc = UserService.getCurrentUser();
+        $scope.username = strc.username;
+        $scope.password = strc.password;
+        $scope.firstName = strc.firstName;
+        $scope.lastName = strc.lastName;
+        $scope.email = strc.email;
 
-        var store; //to store the $rootScope
-
-        store = UserService.getCurrentUser();
-
-        $scope.username = store.username;
-        $scope.password = store.password;
-        $scope.firstName = store.firstName;
-        $scope.lastName = store.lastName;
-        $scope.email = store.email;
-
-        //event implementation
         function update(username,password,firstName,lastName, email) {
 
             var updateUser = {
@@ -32,9 +26,7 @@
                 "roles": UserService.getCurrentUser().roles
             }
 
-
             UserService.updateUser(UserService.getCurrentUser()._id, updateUser, render)
-
         }
 
         function render(updateUser) {

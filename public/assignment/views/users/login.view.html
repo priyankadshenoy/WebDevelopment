@@ -3,20 +3,22 @@
     <br>
     <form class="form-horizontal">
         <div class="form-group">
-            <label for="inputUsername" class="col-sm-2">Username:</label>
+            <label  class="col-sm-2">Username:</label>
             <div class="col-sm-10">
-                <input type="text" ng-model="username" class="form-control" id="inputUsername" placeholder="Username">
+                <input type="text" ng-model="username1" class="form-control"
+                       id="username1" placeholder="Username">
             </div>
         </div>
         <div class="form-group">
-            <label for="inputPassword3" class="col-sm-2">Password:</label>
+            <label  class="col-sm-2">Password:</label>
             <div class="col-sm-10">
-                <input type="password" ng-model="password" class="form-control" id="inputPassword3" placeholder="Password">
+                <input type="password" ng-model="password1" class="form-control"
+                       id="password1" placeholder="Password">
             </div>
         </div>
         <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
-                <a ng-click="login(username,password)" class="btn btn-default form-control">
+                <a ng-click="login(username1,password1)" class="btn btn-default form-control">
                     Login</a>
             </div>
         </div>

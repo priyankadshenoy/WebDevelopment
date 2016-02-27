@@ -1,4 +1,3 @@
-
 (function(){
     'use strict';
 
@@ -7,19 +6,12 @@
         .controller("SidebarController", SidebarController);
 
     function SidebarController($scope, UserService){
-
         UserService.setCurrentUser(null);
-
-        //event declarations
-        $scope.showAdmin = showAdmin;
-        $scope.showForms = showForms;
-        $scope.showHome = showHome;
-        $scope.showProfile = showProfile;
-
-
-
-        //event implementation
-        function showAdmin() {
+        $scope.admin = admin;
+        $scope.forms = forms;
+        $scope.home = home;
+        $scope.profile = profile;
+        function admin() {
             if (UserService.getCurrentUser() != null) {
                 for(var i = 0; i < UserService.getCurrentUser().roles.length; i++) {
                     if (UserService.getCurrentUser().roles[i] == "admin") {
@@ -27,20 +19,15 @@
                     }
                 }
             }
-
         }
-
-        function showForms() {
+        function forms() {
             return UserService.getCurrentUser()!=null;
         }
-
-        function showHome() {
+        function home() {
             return true;
         }
-
-        function showProfile() {
+        function profile() {
             return UserService.getCurrentUser()!=null;
         }
-
     }
 })();

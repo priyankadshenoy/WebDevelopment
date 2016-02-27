@@ -1,15 +1,16 @@
 (function(){
+    'use strict';
+
     angular
         .module("FormBuilderApp")
         .controller("RegisterController", RegisterController);
 
     function RegisterController($scope,UserService, $location){
         $scope.register = register;
+        function register(username,password,verifyPassword, email) {
 
-        function register(username,password,password1, email){
-
-            if(password == password1){
-                var newUser = {
+            if(password == verifyPassword) {
+                var nuser = {
                     "_id": (new Date).getTime(),
                     "firstName": null,
                     "lastName": null,
@@ -18,11 +19,13 @@
                     "roles": []
                 }
             }
-            UserService.createUser(newUser, render)
+
+            UserService.createUser(nuser, render);
         }
-        function render(newUser){
-            if(newUser!=null){
-                $rootScope = newUser;
+
+        function render(nuser) {
+            if (nuser != null) {
+                UserService.setCurrentUser(nuser);
                 $location.path('/profile');
             }
 

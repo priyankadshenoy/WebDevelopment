@@ -10,8 +10,6 @@
 
     function UserService($rootScope){
 
-        //initializing array of users with JSON data
-
         var users = [
             {	"_id":123, "firstName":"Alice",            "lastName":"Wonderland",
                 "username":"alice",  "password":"alice",   "roles": ["student"]		},

@@ -7,8 +7,6 @@
 
     function FormService(){
 
-        //initializing array of forms with JSON data
-
         var forms = [
             {"_id": "000", "title": "Contacts", "userId": 123},
             {"_id": "010", "title": "ToDo",     "userId": 123},
@@ -25,7 +23,7 @@
         return api;
 
         function createFormForUser(userId, form, callback) {
-            var newForm; //new form for the user
+            var newForm;
 
             form._id = (new Date).getTime();
             form.title = form.title;
@@ -37,7 +35,7 @@
         }
 
         function findAllFormsForUser(userId, callback) {
-            var userForms = []; //array containing the forms of the particular user
+            var userForms = [];
 
             for (var i = 0; i < forms.length; i++) {
                 if (forms[i].userId == userId) {
