@@ -1,41 +1,26 @@
-<!DOCTYPE html>
-<html lang="en" ng-app="FormBuilderApp">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Home</title>
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
-    <link href="../../css/dashboard.css" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-beta.0/angular.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-beta.0/angular-route.js"></script>
-    <script src="../../app.js"></script>
-    <script src="../../config.js"></script>
-</head>
-<body ng-controller="HeaderController">
-<nav class="navbar navbar-inverse navbar-fixed-top">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
-                    data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-
-        </div>
-        <div id="navbar" class="navbar-collapse collapse">
-            <nav ng-controller="HeaderController">
+<div ng-controller="HeaderController">
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#/home">Form Maker</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#/register">Register</a></li>
-                    <li><a href="#/login">Login</a></li>
-                    <li><a href="#/profile">Username</a></li>
-                    <li><a href="#/index">Logout</a></li>
-                    <li><a href="#/admin">Admin</a></li>
+
+                    <li ng-show = "showRegister()"><a href = "#/register">Register</a></li>
+                    <li ng-show = "showLogin()"><a href = "#/login">Login</a></li>
+                    <li ng-show = "showLogout()" ng-click = "loggingOut()"><a href = "#/home">Logout</a></li>
+                    <li ng-show = "showName()"><a href = "#/profile">{{username}}</a></li>
+                    <li ng-show = "showAdmin()"><a href = "#/admin">Admin</a></li>
                 </ul>
-            </nav>
+
+            </div>
         </div>
-    </div>
-</nav>
-</body>
-</html>
+    </nav>
+</div>
