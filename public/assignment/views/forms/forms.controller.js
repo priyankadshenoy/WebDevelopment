@@ -7,15 +7,15 @@
         .controller("FormController",FormController);
 
     function FormController($scope, FormService,$location, UserService) {
-        var currentAllUserForms= [];
+        var currentAllUserForms = [];
         var currentUser = null;
         var selectedFormIndex = -1;
 
         if (UserService.getCurrentUser() == null) {
             $location.path("/home");
         }
-        else{
-            currentUser =UserService.getCurrentUser();
+        else {
+            currentUser = UserService.getCurrentUser();
             FormService.findAllFormsForUser(currentUser._id, renderAllForms);
         }
 
@@ -29,16 +29,17 @@
         //event implementations
 
         function addForm(formName) {
+            if (formName != null) {
+                var newForm = {
+                    "_id": null,
+                    "title": formName,
+                    "userId": null
+                };
 
-            var newForm = {
-                "_id" : null,
-                "title" : formName,
-                "userId" : null
-            };
 
-            FormService.createFormForUser(currentUser._id, newForm, renderAdd);
+                FormService.createFormForUser(currentUser._id, newForm, renderAdd);
+            }
         }
-
         function deleteForm(index) {
             selectedFormIndex= index;
             FormService.deleteFormById(currentAllUserForms[index]._id, renderDelete);
