@@ -18,7 +18,10 @@
             .when("/newapp", {
                 templateUrl: "views/home/newapplication.html"
             })
+            .when("/arithmetic", {
+                templateUrl: "views/arithmetic/arithmetic.view.html",
 
+            })
             .otherwise({
                 redirectTo: "/login"
             });
