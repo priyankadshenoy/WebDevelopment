@@ -20,10 +20,8 @@
             })
             .when("/arithmetic", {
                 templateUrl: "views/arithmetic/arithmetic.view.html",
-
-            })
-            .otherwise({
-                redirectTo: "/login"
+                controller: "ArithmeticController"
             });
+
     }
 })();
