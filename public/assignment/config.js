@@ -27,6 +27,9 @@
             .when("/forms", {
                 templateUrl: "views/forms/forms.view.html"
             })
+            .when("/string", {
+                templateUrl: "views/forms/string.view.html"
+            })
             .when("/fields", {
                 templateUrl: "views/forms/fields.view.html"
             });

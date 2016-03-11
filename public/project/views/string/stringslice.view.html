@@ -1,0 +1,22 @@
+<head>
+    <meta charset="UTF-8">
+    <title>Arithmetic Application</title>
+</head>
+<h2>Lets have fun with Strings</h2>
+<ul class="nav nav-tabs">
+    <li role="presentation"><a href="#">Search</a></li>
+    <li role="presentation"><a href="#">Replace</a></li>
+    <li role="presentation"><a href="#">Join</a></li>
+    <li role="presentation" class="active"><a href="#">Slice</a></li>
+</ul>
+<div class="table-responsive" ng-app="ProjectApp" ng-controller="StringController">
+<br>
+    Would you like like to cut your sentences into parts as per your wishes?
+    <br><br>
+    Hello I am Priyanka! I enjoy web development! :)
+    <input type="text" ng-model="string.sub1" class="form-control" placeholder="Index of first character to start cutting">
+    <input type="text" ng-model="string.sub2" class="form-control" placeholder="How many characters would you like to cut">
+    <a ng-click="stringsub(string.sub1, string.sub2)" class="btn btn-default form-control">Slice</a>
+    <br>
+    <div>{{match}}</div>
+</div>

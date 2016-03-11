@@ -1,0 +1,28 @@
+<head>
+    <meta charset="UTF-8">
+    <title>Arithmetic Application</title>
+</head>
+<h2>Lets have fun with Strings</h2>
+<ul class="nav nav-tabs">
+    <li role="presentation"><a href="#/string">Search</a></li>
+    <li role="presentation" class="active"><a href="#">Replace</a></li>
+    <li role="presentation"><a href="#">Join</a></li>
+    <li role="presentation"><a href="#">Slice</a></li>
+</ul>
+<div class="table-responsive" ng-app="ProjectApp" ng-controller="StringController">
+    <br>
+    <p>Hello I am Priyanka! I enjoy web development! :)
+    I think programming is fun and if you have an
+    understanding of concepts it is not difficult to
+    create simple lines of code</p>
+    <br>
+    Which text would you like to replace?
+    <input type="text" ng-model="string.replacee" class="form-control" placeholder="Replace me?">
+    With what text?
+    <input type="text" ng-model="string.replacement" class="form-control" placeholder="I am the replacement">
+
+    <a ng-click="stringreplace(string.replacee, string.replacement)" class="btn btn-default form-control">
+        Replace</a>
+    <br>
+    <div>{{match}}</div>
+</div>

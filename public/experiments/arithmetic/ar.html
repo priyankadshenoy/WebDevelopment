@@ -1,0 +1,45 @@
+<html ng-app="shanidkvApp">
+<head>
+    <title>Shanid KV | AngularJS Dynamic Form Fields</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular.min.js"></script>
+    <script type="text/javascript" src="ar.js"></script>
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="ar.css">
+</head>
+<body>
+<div ng-app>
+    <div ng-controller="ShoppingCartCtrl">
+        <br />
+        <table border="1">
+            <thead>
+            <tr>
+                <td>Price</td>
+                <td>Operand</td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="item in items">
+                <td>{{item.Price}}</td>
+                <td>{{item.Operand}}</td>
+                <td><input type="button" value="Remove" ng-click="removeItem($index)" /></td>
+            </tr>
+            </tbody>
+        </table>
+        <br />
+        <div>Total Price: {{totalPrice()}}</div>
+        <br />
+        <table>
+
+            <tr>
+                <td>Price: </td>
+                <td><input type="text" ng-model="item.Price" /></td>
+            </tr>
+            <tr>
+                <td colspan="2"><input type="Button" value="Add" ng-click="addItem(item)" /> </td>
+
+            </tr>
+        </table>
+    </div>
+</div>
+</body>
+</html>

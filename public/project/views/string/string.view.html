@@ -1,83 +1,26 @@
 <head>
     <meta charset="UTF-8">
-    <title>String Application</title>
+    <title>Arithmetic Application</title>
 </head>
-<div class="table-responsive" ng-app="ProjectApp" ng-controller="ArithmeticController">
-    <h2> Lets do Math together!</h2><br>
-    <table class="table table-striped table-bordered">
-        <thead>
-        <tr>
-            <th>Lets </th>
-            <!-- <th>Am I sure?</th>-->
+<h2>Lets have fun with Strings</h2>
+<ul class="nav nav-tabs">
+    <li role="presentation" class="active"><a href="#">Search</a></li>
+    <li role="presentation"><a href="#/stringreplace">Replace</a></li>
+    <li role="presentation"><a href="#/stringjoin">Join</a></li>
+    <li role="presentation"><a href="#/stringslice">Slice</a></li>
+</ul>
+<div class="table-responsive" ng-app="ProjectApp" ng-controller="StringController">
+    <br>
+    <p>
+        Lorem ipsum dolor sit amet, et vel tale mundi. Id corpora tacimates sed. Mazim copiosae ei qui, aliquid legimus dissentiunt per at. Sint patrioque mei ut, his cu atqui molestie gloriatur.
 
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <td><input type="number"  class="form-control"  placeholder="Operand 1" ng-model="operator1"></td>
-            <!--<td>
-                <a class="btn btn-default">
-                        <span class="glyphicon glyphicon-plus pull-right" aria-hidden="true">
-                        </span>
-                </a>
+        Qui cu odio atqui clita, graeco recteque qui eu. Cu nam nullam dignissim, sed augue fabulas impedit cu. At nam affert pertinacia signiferumque, alii graeco commune eos ea, prima senserit eu vix. Veri admodum facilisis te vis, ridens sententiae reformidans usu at.
 
-                <a  class="btn btn-default">
-                    <span class="glyphicon glyphicon-ok pull-right" aria-hidden="true"></span>
-                </a>
-            </td>-->
-        </tr>
-        <tr>
-            <td>
-                <select class="btn btn-primary form form-control" ng-model="operator">
-                    <option value="+" selected="selected">Add</option>
-                    <option value="-">Subtract</option>
-                    <option value="*">Multiply</option>
-                    <option value="/">Divide</option>
-                </select>
-            </td>
-            <!--
-             <td>
-                 <a class="btn btn-default">
-                         <span class="glyphicon glyphicon-plus pull-right" aria-hidden="true">
-                         </span>
-                 </a>
+        Quis mundi accusam eu qui, pri dicta vivendo ea. His no nisl inani philosophia. Vituperata definitionem qui an, libris eruditi omittantur et vis. Cu pro conceptam pertinacia, ad sed iudico utamur dolorum, simul noluisse cu pro. Duo cu oblique diceret oportere.
 
-                 <a  class="btn btn-default">
-                     <span class="glyphicon glyphicon-ok pull-right" aria-hidden="true"></span>
-                 </a>
-             </td>
-             -->
-        </tr>
-
-        <tr>
-            <td><input type="number"  class="form-control"  placeholder="Operand 2" ng-model="operator2"></td>
-            <!--
-             <td>
-                 <a class="btn btn-default">
-                         <span class="glyphicon glyphicon-plus pull-right" aria-hidden="true">
-                         </span>
-                 </a>
-
-                 <a  class="btn btn-default">
-                     <span class="glyphicon glyphicon-ok pull-right" aria-hidden="true"></span>
-                 </a>
-             </td>
-             -->
-        </tr>
-        <tr>
-            <td>
-                <div class="form-group">
-                    <button ng-click="answer()" class="btn btn-primary btn-block">Login</button>
-                </div>
-            </td>
-
-        </tr>
-        <tr>
-            <td>
-                <div>{{result}}</div>
-            </td>
-        </tr>
-
-        </tbody>
-    </table>
+    </p><br>
+    <input type="text" ng-model="string.search" class="form-control" placeholder="Type text you wish to find">
+    <a ng-click="stringsearch(string.search)" class="btn btn-default form-control">
+        Search</a>
+    <div>{{match}}</div>
 </div>
