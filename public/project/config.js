@@ -16,7 +16,7 @@
                 templateUrl: "views/home/home.view.html"
             })
             .when("/newapp", {
-                templateUrl: "views/home/newapplication.html"
+                templateUrl: "views/home/newapplication.view.html"
             })
             .when("/string", {
                 templateUrl: "views/string/string.view.html",
@@ -37,6 +37,14 @@
             .when("/arithmetic", {
                 templateUrl: "views/arithmetic/arithmetic.view.html",
                 controller: "ArithmeticController"
+            })
+            .when("/date", {
+                templateUrl: "views/date/date.view.html",
+                controller: "DateController"
+            })
+            .when("/datemanipulate", {
+                templateUrl: "views/date/datemanipulate.view.html",
+                controller: "DateController"
             });
 
     }

@@ -1,0 +1,22 @@
+<head>
+    <meta charset="UTF-8">
+    <title>Date Application</title>
+</head>
+<h2>Lets have fun with Date</h2>
+<ul class="nav nav-tabs">
+    <li role="presentation" class="active"><a href="#">Basic Operations</a></li>
+    <li role="presentation"><a href="#/">Manipulate Dates</a></li>
+</ul>
+
+<div class="table-responsive" ng-app="ProjectApp" ng-controller="DateController">
+    <input type = "date" class = "form-control" id = "InputDate"
+           placeholder = "Select Date" ng-model="date.pick">
+    <a ng-click="datefindday(date.pick)" class="btn btn-info form-control">
+        Would you like to find the day?</a><br>
+    <div>{{view}}</div><br>
+    <a ng-click="dategettime(date.pick)" class="btn btn-info form-control">
+        Would you like to find how many seconds have passed since January 1, 1970??</a>
+    <div>{{long}}</div>
+
+
+</div>
