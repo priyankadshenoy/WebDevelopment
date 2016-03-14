@@ -45,7 +45,16 @@
             .when("/datemanipulate", {
                 templateUrl: "views/date/datemanipulate.view.html",
                 controller: "DateController"
-            });
+            })
+            .when("/boolean", {
+                templateUrl: "views/boolean/boolean.view.html",
+                controller: "BooleanController"
+            })
+            .when("/booleanlogical", {
+                templateUrl: "views/boolean/booleanlogical.view.html",
+                controller: "BooleanController"
+            })
+            ;
 
     }
 })();

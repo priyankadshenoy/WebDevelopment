@@ -1,0 +1,27 @@
+<head>
+    <title>Boolean Application</title>
+</head>
+<h3>Understanding Logical and Comparision Operations</h3>
+<ul class="nav nav-tabs">
+    <li role="presentation"><a href="#/boolean">Comparision Operations</a></li>
+    <li role="presentation" class="active"><a href="#">Logical Operations</a></li>
+</ul>
+<div class="table-responsive" ng-app="ProjectApp" ng-controller="BooleanController"><br>
+    <input type = "number" class = "form-control"
+           placeholder = "Number for logical operation" ng-model="bool.num1"><br>
+    <input type = "number" class = "form-control"
+           placeholder = "Number for logical operation" ng-model="bool.num2"><br>
+    <select class="btn btn-primary form form-control" ng-model="operator">
+        <option value="&" selected="selected">Logical And</option>
+        <option value="|">Logical Or</option>
+        <option value="^">XOR</option>
+        <option value="<<">Left Shift</option>
+        <option value=">>">Right Shift</option>
+    </select>
+    <button ng-click="logical(bool.num1, bool.num2, operator)"
+            class="btn btn-primary btn-block form-control">Find me?
+    </button>
+    <br>
+    <div>{{result}}</div>
+
+</div>

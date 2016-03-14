@@ -6,10 +6,12 @@
         function DateController($scope){
             $scope.datefindday=datefindday;
             $scope.dategettime=dategettime;
+            $scope.datepost=datepost;
+            $scope.datepre=datepre;
             $scope.view;
             $scope.long;
-            var d=new Date();
-            console.log(d);
+            $scope.pastdt;
+            $scope.postdt;
 
             function datefindday(datepick){
                 var days = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
@@ -19,10 +21,16 @@
             function dategettime(datepick){
                 $scope.long=datepick.getTime();
             }
-            function datepost(days){
-                console.log(d);
+            function datepre(days){
+                var d=new Date();
+                d.setDate(d.getDate()-days);
+                $scope.pastdt=d;
             }
-
+            function datepost(days){
+                var d=new Date();
+                d.setDate(d.getDate()+days);
+                $scope.postdt=d;
+            }
 
 
         }

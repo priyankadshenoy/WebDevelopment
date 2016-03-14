@@ -1,0 +1,23 @@
+<head>
+    <title>Boolean Application</title>
+</head>
+<h3>Understanding Logical and Comparision Operations</h3>
+<ul class="nav nav-tabs">
+    <li role="presentation" class="active"><a href="#">Comparision Operations</a></li>
+    <li role="presentation"><a href="#/booleanlogical">Logical Operations</a></li>
+</ul>
+<div class="table-responsive" ng-app="ProjectApp" ng-controller="BooleanController"><br>
+    <input type = "number" class = "form-control"  placeholder = "Number for comparison" ng-model="bool.num1"><br>
+    <input type = "number" class = "form-control"  placeholder = "Number for comparison" ng-model="bool.num2"><br>
+    <select class="btn btn-primary form form-control" ng-model="operator">
+        <option value="=" selected="selected">Are they equal?</option>
+        <option value=">">Is A > B?</option>
+        <option value="<">Is A <  B?</option>
+        <!--<option value="===">Equal by type?</option>-->
+    </select>
+    <button ng-click="comparison(bool.num1, bool.num2, operator)"
+            class="btn btn-primary btn-block form-control">Login
+        </button>
+        <br>
+    <div>{{result}}</div>
+</div>

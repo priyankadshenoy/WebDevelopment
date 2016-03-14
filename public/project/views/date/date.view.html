@@ -5,12 +5,12 @@
 <h2>Lets have fun with Date</h2>
 <ul class="nav nav-tabs">
     <li role="presentation" class="active"><a href="#">Basic Operations</a></li>
-    <li role="presentation"><a href="#/">Manipulate Dates</a></li>
+    <li role="presentation"><a href="#/datemanipulate">Manipulate Dates</a></li>
 </ul>
 
-<div class="table-responsive" ng-app="ProjectApp" ng-controller="DateController">
+<div class="table-responsive" ng-app="ProjectApp" ng-controller="DateController"><br>
     <input type = "date" class = "form-control" id = "InputDate"
-           placeholder = "Select Date" ng-model="date.pick">
+           placeholder = "Select Date" ng-model="date.pick"><br>
     <a ng-click="datefindday(date.pick)" class="btn btn-info form-control">
         Would you like to find the day?</a><br>
     <div>{{view}}</div><br>
