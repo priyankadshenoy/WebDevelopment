@@ -1,4 +1,4 @@
-var mock = require("/user.mock.json");
+var mock = require("./user.mock.json");
 
 module.exports=function(app){
     var api={
@@ -31,7 +31,7 @@ module.exports=function(app){
                 return mock[i];
             }
         }
-        if (flag = "false") {
+        if (flag == "false") {
             return null;
         }
     }

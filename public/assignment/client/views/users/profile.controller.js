@@ -6,36 +6,27 @@
         .controller("ProfileController", ProfileController);
 
     function ProfileController($scope, $location, UserService){
-        $scope.update = update;
-        var strc;
-        strc = UserService.getCurrentUser();
-        $scope.username = strc.username;
-        $scope.password = strc.password;
-        $scope.firstName = strc.firstName;
-        $scope.lastName = strc.lastName;
-        $scope.email = strc.email;
+        var vm = this;
+        vm.update = update;
+        var currentUser = $rootScope.currentUser;
 
-        function update(username,password,firstName,lastName, email) {
+        function init(){
 
-            var updateUser = {
-                "_id": UserService.getCurrentUser()._id,
-                "firstName": firstName,
-                "lastName": lastName,
-                "username": UserService.getCurrentUser().username,
-                "password": password,
-                "roles": UserService.getCurrentUser().roles
-            }
+        }init();
 
-            UserService.updateUser(UserService.getCurrentUser()._id, updateUser, render)
-        }
-
-        function render(updateUser) {
-            if (updateUser != null) {
-                UserService.setCurrentUser(updateUser);
-                $location.path('/profile');
-            }
-
+        function update(user) {
+            $scope.message = null;
+            var id = currentUser._id;
+            UserService.updateUser(id,user)
+                .then(function(response){
+                    if(response.data)
+                    {
+                        UserService.setCurrentUser(response.data);
+                        $scope.message = "Profile updated";
+                    }else{
+                        $scope.message = "Re-enter details";
+                    }
+                });
         }
     }
-
 })();
