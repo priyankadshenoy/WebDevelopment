@@ -1,9 +1,9 @@
-(function(){
-    'use strict';
-    angular
-        .module("FormBuilderApp")
-        .controller("LoginController", LoginController);
-    function LoginController($scope, UserService, $location) {
+(function() {
+    "use strict";
+    angular.module("FormBuilderApp")
+        .controller("LoginController",LoginController);
+
+    function LoginController($scope, UserService,$location) {
         var vm = this;
         vm.login = login;
 
@@ -12,22 +12,19 @@
         }init();
 
         function login(user) {
-
             if(!user){
-                $scope.message = "Please enter login details";
+                $scope.message = "Enter Login";
                 return;
             }
 
             UserService.findUserByCredentials
                 ({username:user.username,
                     password:user.password})
-
                 .then(function(response){
                     if(response.data){
                         UserService.setCurrentUser(response.data);
                         $location.url("/profile");
-                    }
-                    else{
+                    }else{
                         $scope.message = "Username or password doesnot match";
                     }
                 });

@@ -1,5 +1,4 @@
 (function() {
-
     angular.module("FormBuilderApp")
         .factory("UserService", UserService);
 
@@ -18,6 +17,7 @@
         return model;
 
         function findUserByCredentials(credentials) {
+            console.log("user.service.client");
             return $http.get("/api/assignment/user/" +credentials.username+ "/" +credentials.password);
         }
 

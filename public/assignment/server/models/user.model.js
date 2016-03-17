@@ -75,15 +75,17 @@ module.exports=function(app){
 
     function findUserByCredentials(credentials){
         var flag="false";
+        console.log("service.user");
         for(var i in mock){
             if(mock[i].username === credentials.username &&
                 mock[i].password === credentials.password)
             {
                 flag= "true";
                 return mock[i];
+                break;
             }
         }
         if(flag=="false")
             return null;
     }
-}
+};

@@ -1,11 +1,10 @@
-(function(){
-    'use strict';
+(function() {
+    "use strict";
 
-    angular
-        .module("FormBuilderApp")
+    angular.module("FormBuilderApp")
         .factory("FormService", FormService);
 
-    function FormService($http){
+    function FormService($http) {
 
         var model = {
             createFormForUser: createFormForUser,
@@ -14,7 +13,6 @@
             updateFormById: updateFormById,
             findFormById:findFormById
         };
-
         return model;
 
         function createFormForUser(userId, form) {

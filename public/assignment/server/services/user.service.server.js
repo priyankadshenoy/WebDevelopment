@@ -8,31 +8,9 @@ module.exports = function(app,userModel){
     app.delete("/api/assignment/user/:userId",deleteUserById);
 
 
-    function createUser(req,res){
-        var user=req.body;
-        res.json(userModel.createUser(user));
-    }
-
-    function allUsers(req,res){
-        res.json(userModel.findAllUsers());
-    }
-
-    function findById(req,res){
-        var userId =req.params.userId;
-        res.json(userModel.findById(userId));
-    }
-
     function findUserByUsername(req,res){
         var username = req.params.username;
         res.json(userModel.findUserByUsername(username));
-    }
-
-    function findUserByCredentials(req,res){
-        var credentials = {
-            username:req.params.username,
-            password:req.params.password
-        };
-        res.json(userModel.findUserByCredentials(credentials));
     }
 
     function updateUser(req,res){
@@ -44,6 +22,15 @@ module.exports = function(app,userModel){
     function deleteUserById(req,res){
         var userId =req.params.userId;
         res.json(userModel.deleteUserById(userId));
+    }
+
+    function findUserByCredentials(req,res){
+        console.log("user service server");
+        var credentials = {
+            username:req.params.username,
+            password:req.params.password
+        };
+        res.json(userModel.findUserByCredentials(credentials));
     }
 
 };
