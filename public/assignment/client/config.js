@@ -10,8 +10,8 @@
 
             .when("/home", {
                 templateUrl: "views/home/home.view.html",
-                controller:"HomeController",
-                controllerAs:"model"
+                //controller:"HomeController",
+                //controllerAs:"model"
             })
 
             .when("/admin", {
