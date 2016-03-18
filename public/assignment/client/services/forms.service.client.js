@@ -1,38 +1,35 @@
-(function() {
-    "use strict";
-
+(function(){
     angular.module("FormBuilderApp")
-        .factory("FormService", FormService);
+        .factory("FormService",FormService);
 
-    function FormService($http) {
+    function FormService($http){
 
         var model = {
-            createFormForUser: createFormForUser,
-            findAllFormsForUser: findAllFormsForUser,
-            deleteFormById: deleteFormById,
-            updateFormById: updateFormById,
-            findFormById:findFormById
-        };
+            findAllFormsForUser:findAllFormsForUser,
+            findFormByTitle:findFormByTitle,
+            deleteForm:deleteForm,
+            addForm:addForm,
+            updateForm:updateForm
+        }
         return model;
 
-        function createFormForUser(userId, form) {
-            return $http.post("/api/assignment/user/" + userId + "/form" +form);
+        function findFormByTitle(title){
+            return $http.get("/api/assignment/findFormByTitle/"+title);
         }
 
-        function findAllFormsForUser(userId) {
-            return $http.get("/api/assignment/user/" + userId + "/form");
+        function addForm(form,id){
+            return $http.post("/api/assignment/addForm/user/"+id+"/form",form);
         }
 
-        function deleteFormById(formId) {
-            return $http.delete("/api/assignment/form/" + formId);
+        function findAllFormsForUser(id){
+            return $http.get("/api/assignment/findAllFormsForUser/"+id+"/form");
         }
 
-        function updateFormById(formId, newForm) {
-            return $http.post("/api/assignment/form/" + formId, newForm);
+        function deleteForm(formToDelete,userId){
+            return $http.delete("/api/assignment/form/"+formToDelete+"/"+userId);
         }
-
-        function findFormById(formId){
-            return $http.get("/api/assignment/form/" +formId);
+        function updateForm(formToBeUpdatedId,form){
+            return $http.put("/api/assignment/form/"+formToBeUpdatedId,form);
         }
     }
 })();

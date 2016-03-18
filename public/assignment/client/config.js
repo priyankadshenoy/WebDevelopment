@@ -27,10 +27,11 @@
             })
 
             .when("/form", {
-                templateUrl: "views/forms/forms.view.html",
-                controller:"FormController",
-                controllerAs:"model"
+            templateUrl: "views/forms/forms.view.html",
+            controller:"FormController",
+            controllerAs:"model"
             })
+
 
             .when("/fields", {
                 templateUrl: "views/forms/fields.view.html",
