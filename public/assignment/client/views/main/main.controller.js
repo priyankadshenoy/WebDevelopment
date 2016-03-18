@@ -1,8 +1,8 @@
-(function(){
-    angular
-        .module("FormBuilderApp")
-        .controller("MainController", MainController);
-    function MainController($scope, $location){
+(function() {
+    "use strict";
+    angular.module("FormBuilderApp")
+        .controller("MainController",MainController);
+    function MainController($scope, $location) {
         $scope.$location = $location;
     }
 })();

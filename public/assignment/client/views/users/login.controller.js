@@ -14,7 +14,7 @@
         function login(user) {
             if(!user){
                 $scope.message = "Enter Login";
-                return;
+                return $scope.message;
             }
 
             UserService.findUserByCredentials

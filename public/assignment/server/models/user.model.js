@@ -1,91 +1,84 @@
 var mock = require("./user.mock.json");
 
-module.exports=function(app){
-    var api={
+module.exports = function (app) {
+
+    var api = {
         createUser: createUser,
+        findAllUsers: findAllUsers,
+        findById: findById,
         updateUser: updateUser,
         deleteUserById:deleteUserById,
         findUserByUsername: findUserByUsername,
-        findAll: findAll,
-        findById: findById,
         findUserByCredentials: findUserByCredentials
     };
+
     return api;
 
-    function createUser(user){
+    function createUser(user) {
         var user = {
             username: user.username,
             password: user.password,
-            _id: (new Date).getTime()
+            _id: (new Date).getTime(),
+            email:user.email
         };
         mock.push(user);
-        return user;
+        return (user);
+    }
+
+    function findAllUsers() {
+        return (mock);
+    }
+
+    function findById(userid) {
+        for (var u in mock) {
+            if (mock[u]._id == userid) {
+                return mock[u];
+            }
+            else {
+                return null;
+            }
+        }
+    }
+
+    function findUserByUsername(username) {
+        for (var u in mock) {
+            if (mock[u].username == username) {
+                return mock[u];
+            }
+            else {
+                return null;
+            }
+        }
     }
 
     function updateUser(userId, user) {
-        var flag = "false";
-        for (var i in mock) {
-            if (mock[i]._id === userId) {
+        for (var u in mock) {
+            if (mock[u]._id == userId) {
                 flag = "true";
-                mock[i] = user;
-                return mock[i];
+                mock[u] = user;
+                return (mock[u]);
             }
         }
-        if (flag == "false") {
-            return null;
-        }
+        return (null);
     }
 
-    function deleteUserById(userId){
-        for (var i in mock) {
-            if (mock[i]._id === userId)
-                delete mock[i];
-        }
-    }
-
-    function findUserByUsername(userName){
-        var flag="false";
-        for(var i in mock){
-            if(mock[i].username === userName)
-            {
-                flag= "true";
-                return mock[i];
+    function deleteUserById(userId) {
+        for (var u in mock) {
+            if (mock[u]._id === userId) {
+                mock.splice(u, 1);
             }
         }
-        if(flag=="false")
+        return (mock);
+    }
+
+
+    function findUserByCredentials(credentials) {
+        for (var u in mock) {
+            if (mock[u].username == credentials.username &&
+                mock[u].password == credentials.password) {
+                return mock[u];
+            }
+        }
         return null;
-    }
-
-    function findAll(){
-        return mock;
-    }
-
-    function findById(userID){
-        var flag="false";
-        for(var i in mock){
-            if(mock[i]._id === userID)
-            {
-                flag= "true";
-                return mock[i];
-            }
-        }
-        if(flag=="false")
-            return null;
-    }
-
-    function findUserByCredentials(credentials){
-        var flag="false";
-        console.log("service.user");
-        for(var i in mock){
-            if(mock[i].username === credentials.username &&
-                mock[i].password === credentials.password)
-            {
-                flag= "true";
-                return mock[i];
-                break;
-            }
-        }
-        if(flag=="false")
-            return null;
     }
 };

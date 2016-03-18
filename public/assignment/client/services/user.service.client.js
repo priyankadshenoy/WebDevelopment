@@ -17,8 +17,7 @@
         return model;
 
         function findUserByCredentials(credentials) {
-            console.log("user.service.client");
-            return $http.get("/api/assignment/user/" +credentials.username+ "/" +credentials.password);
+            return $http.get("/api/assignment/user/" + credentials.username+ "/" + credentials.password);
         }
 
         function findAllUsers() {
@@ -34,19 +33,19 @@
         }
 
         function deleteUserById(userId) {
-            return $http.delete("/api/assignment/user/" +userId);
+            return $http.delete("/api/assignment/user/" + userId);
         }
 
         function updateUser(userId,user) {
-            return $http.put("/api/assignment/user/" +userId ,user);
+            return $http.put("/api/assignment/user/" + userId , user);
         }
 
         function findUserByUsername(username){
-            return $http.get("/api/assignment/user/" +username);
+            return $http.get("/api/assignment/user/" + username);
         }
 
         function findById(userId){
-            return $http.get("/api/assignment/user/" +userId);
+            return $http.get("/api/assignment/user/" + userId);
         }
     }
 })();

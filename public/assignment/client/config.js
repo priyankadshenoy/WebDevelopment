@@ -20,10 +20,10 @@
                 controllerAs:"model"
             })
 
-            .when("/profile", {
+            .when('/profile', {
                 templateUrl: "views/users/profile.view.html",
-                controller:"ProfileController",
-                controllerAs:"model"
+                controller: "ProfileController",
+                controllerAs: "model"
             })
 
             .when("/form", {

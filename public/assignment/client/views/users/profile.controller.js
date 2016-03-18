@@ -1,30 +1,41 @@
-(function(){
-    'use strict';
-
-    angular
-        .module("FormBuilderApp")
+(function() {
+    "use strict";
+    angular.module("FormBuilderApp")
         .controller("ProfileController", ProfileController);
 
-    function ProfileController($scope, $location, UserService){
+    function ProfileController($scope,UserService,$rootScope) {
         var vm = this;
         vm.update = update;
         var currentUser = $rootScope.currentUser;
+        vm.username= currentUser.username;
+        vm.password= currentUser.password;
+        vm.firstName = currentUser.firstName;
+        vm.lastName = currentUser.lastName;
+        vm.email = currentUser.email;
 
         function init(){
 
         }init();
 
-        function update(user) {
+        function update(username,password,firstName,lastName,email) {
             $scope.message = null;
             var id = currentUser._id;
-            UserService.updateUser(id,user)
+            var userDetails={
+                "_id":id,
+                "username":username,
+                "password":password,
+                "firstName":firstName,
+                "lastName":lastName,
+                "email":email
+            };
+            UserService.updateUser(id,userDetails)
                 .then(function(response){
                     if(response.data)
                     {
                         UserService.setCurrentUser(response.data);
-                        $scope.message = "Profile updated";
+                        $scope.message = "Profile update success";
                     }else{
-                        $scope.message = "Re-enter details";
+                        $scope.message = "Unable to update profile";
                     }
                 });
         }
