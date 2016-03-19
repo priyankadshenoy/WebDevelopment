@@ -26,16 +26,15 @@
                 controllerAs: "model"
             })
 
-            .when("/form", {
-            templateUrl: "views/forms/forms.view.html",
-            controller:"FormController",
-            controllerAs:"model"
+            .when("/forms", {
+                templateUrl: "views/forms/forms.view.html",
+                controller:"FormController",
+                controllerAs: "model"
             })
 
-
             .when("/fields", {
-                templateUrl: "views/forms/fields.view.html",
-                controller:"FieldController",
+                templateUrl: "views/forms/field.view.html",
+                controller: "FieldController",
                 controllerAs:"model"
             })
 
@@ -50,6 +49,7 @@
                 controller:"LoginController",
                 controllerAs:"model"
             })
+
 
             .otherwise({
                 redirectTo:"home"

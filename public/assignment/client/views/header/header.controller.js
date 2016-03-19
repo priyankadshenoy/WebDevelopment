@@ -7,11 +7,24 @@
         .controller("HeaderController", HeaderController);
 
     function HeaderController($scope,UserService) {
-        $scope.logout=logout;
 
-        function logout(){
+
+        //var vm = this;
+
+        //event declarations
+        $scope.logout = logout;
+
+
+        function init(){
+
+        }
+        init();
+
+        //event implementation
+        function logout() {
             UserService.setCurrentUser(null);
 
         }
+
     }
 })();

@@ -41,7 +41,7 @@
                     })
             }
             else{
-                vm.message="Enter a form name";
+                vm.message="Enter form name please";
             }
         }
 
