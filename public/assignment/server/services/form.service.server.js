@@ -39,4 +39,4 @@ module.exports = function(app,formModel) {
         var updatedForm=formModel.updateForm(formId,newForm);
         res.json(updatedForm);
     }
-};
+}

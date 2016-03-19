@@ -8,6 +8,7 @@
         var vm=this;
         vm.currentUser=$rootScope.currentUser;
         vm.message=null;
+
         vm.addForm=addForm;
         vm.updateForm=updateForm;
         vm.deleteForm=deleteForm;
@@ -41,7 +42,7 @@
                     })
             }
             else{
-                vm.message="Enter form name please";
+                vm.message="Enter a form name";
             }
         }
 
@@ -77,6 +78,7 @@
             var formToDelete=vm.forms[index]._id;
             FormService.deleteForm(formToDelete,userId)
                 .then(function(response){
+                    console.log("after deletion",response.data);
                     vm.forms=response.data;
                     vm.formIndexSelected=null;
                     vm.formName=null;
