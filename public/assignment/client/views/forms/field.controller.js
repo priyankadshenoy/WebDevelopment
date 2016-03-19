@@ -1,80 +1,173 @@
 (function(){
-    "use strict";
-    angular.module("FormBuilderApp")
-        .controller("FieldController",FieldController);
+    angular
+        .module("FormBuilderApp")
+        .controller("FieldController", fieldController);
 
-    function FieldController($rootScope,$routeParams,FieldService) {
-
+    function fieldController(FieldService, $routeParams, $uibModal) {
         var vm = this;
-        vm.currentUser = $rootScope.currentUser;
-        vm.message = null;
-        vm.addField=addField;
-        //vm.removeField=removeField;
-        vm.editField=editField;
+        var formId = $routeParams.formId;
 
-        var formId=$routeParams.formId;
+        FieldService
+            .getFieldsForForm(formId)
+            .then(function(response) {
+                console.log(response.data);
+                vm.fields = response.data;
+            });
 
-        function init(){
-            FieldService.getFieldsForForm(formId)
-                .then(function(response){
-                    vm.existingFields=response.data;
-                })
-        }
-        init();
+        vm.addField = addField;
 
         function addField(fieldType) {
-            console.log("in the add function ");
-            var field = null;
-            //Set default field information
-            if (fieldType == "Single Line Text Field") {
+            var field;
+            if(fieldType === "Single Line Text") {
                 field = {"_id": null, "label": "New Text Field", "type": "TEXT", "placeholder": "New Field"};
+                FieldService
+                    .createFieldForForm(formId, field)
+                    .then(function(response) {
+                        vm.fields.push(response.data[response.data.length - 1]);
+                    });
             }
-            else if (fieldType == "Multi Line Text Field") {
+
+            else if(fieldType === "Multiline Text") {
                 field = {"_id": null, "label": "New Text Field", "type": "TEXTAREA", "placeholder": "New Field"};
+                FieldService
+                    .createFieldForForm(formId, field)
+                    .then(function(response) {
+                        vm.fields.push(response.data[response.data.length - 1]);
+                    });
             }
-            else if (fieldType == "Date Field") {
+
+            else if(fieldType === "Date") {
                 field = {"_id": null, "label": "New Date Field", "type": "DATE"};
+                FieldService
+                    .createFieldForForm(formId, field)
+                    .then(function(response) {
+                        vm.fields.push(response.data[response.data.length - 1]);
+                    });
             }
-            else if (fieldType == "Dropdown Field") {
-                field = {"_id": null, "label": "New Dropdown", "type": "OPTIONS",
-                    "options": [
-                        {"label": "Option 1", "value": "OPTION_1"},
-                        {"label": "Option 2", "value": "OPTION_2"},
-                        {"label": "Option 3", "value": "OPTION_3"}
-                    ]};
+
+            else if(fieldType === "Dropdown") {
+                field = {"_id": null, "label": "New Dropdown", "type": "OPTIONS", "options": [
+                    {"label": "Option 1", "value": "OPTION_1"},
+                    {"label": "Option 2", "value": "OPTION_2"},
+                    {"label": "Option 3", "value": "OPTION_3"}
+                ]};
+                FieldService
+                    .createFieldForForm(formId, field)
+                    .then(function(response) {
+                        vm.fields.push(response.data[response.data.length - 1]);
+                    });
             }
-            else if (fieldType == "Checkboxes Field") {
+
+            else if(fieldType === "Checkboxes") {
                 field = {"_id": null, "label": "New Checkboxes", "type": "CHECKBOXES", "options": [
                     {"label": "Option A", "value": "OPTION_A"},
                     {"label": "Option B", "value": "OPTION_B"},
                     {"label": "Option C", "value": "OPTION_C"}
                 ]};
+                FieldService
+                    .createFieldForForm(formId, field)
+                    .then(function(response) {
+                        vm.fields.push(response.data[response.data.length - 1]);
+                    });
             }
-            else {
-                field = {"_id": null, "label": "New Radio Buttons", "type": "RADIO", "options": [
+
+            else if(fieldType === "Radio buttons") {
+                field = {"_id": null, "label": "New Radio Buttons", "type": "RADIOS", "options": [
                     {"label": "Option X", "value": "OPTION_X"},
                     {"label": "Option Y", "value": "OPTION_Y"},
                     {"label": "Option Z", "value": "OPTION_Z"}
                 ]};
+                FieldService
+                    .createFieldForForm(formId, field)
+                    .then(function(response) {
+                        vm.fields.push(response.data[response.data.length - 1]);
+                    });
             }
+        }
 
-            FieldService.createFieldForForm(formId, field)
-                .then(function(response){
-                    if (response.data) {
-                        vm.existingFields = response.data;
-                    }
+        vm.removeField = removeField;
+
+        function removeField(index) {
+            var fieldId = vm.fields[index]._id;
+            console.log(fieldId);
+            FieldService
+                .deleteFieldFromForm(formId, fieldId)
+                .then(function(response) {
+                    vm.fields.splice(index,1);
                 });
         }
 
+        vm.textPop = textPop;
 
-
-        function editField(field){
-
+        function textPop() {
+            var modalInstance = $uibModal.open({
+                templateUrl: '/assignment/client/views/forms/modal/singleLineField.html'
+                /*controller: 'ModalInstanceCtrl'*/
+            });
         }
 
+        vm.textAreaPop = textAreaPop;
 
+        function textAreaPop() {
+            var modalInstance = $uibModal.open({
+                templateUrl: '/assignment/client/views/forms/modal/singleLineField.html'
+                /*controller: 'ModalInstanceCtrl'*/
+            });
+        }
 
+        vm.datePop = datePop;
+
+        function datePop() {
+            var modalInstance = $uibModal.open({
+                templateUrl: '/assignment/client/views/forms/modal/date.html'
+                /*controller: 'ModalInstanceCtrl'*/
+            });
+        }
+
+        vm.optionsPop = optionsPop;
+
+        function optionsPop() {
+            var modalInstance = $uibModal.open({
+                templateUrl: '/assignment/client/views/forms/modal/options.html'
+                /*controller: 'ModalInstanceCtrl'*/
+            });
+        }
+
+        vm.checkboxPop = checkboxPop;
+
+        function checkboxPop() {
+            var modalInstance = $uibModal.open({
+                templateUrl: '/assignment/client/views/forms/modal/options.html'
+                /*controller: 'ModalInstanceCtrl'*/
+            });
+        }
+
+        vm.radioPop = radioPop;
+
+        function radioPop() {
+            var modalInstance = $uibModal.open({
+                templateUrl: '/assignment/client/views/forms/modal/options.html'
+                /*controller: 'ModalInstanceCtrl'*/
+            });
+        }
+
+        vm.sortableFields = {
+            axis : 'y'
+        };
 
 
     }
 })();
+
+/*(function() {
+ angular.module('FormBuilderApp')
+ .controller('ModalInstanceCtrl', function ($uibModalInstance) {
+ var vm = this;
+ vm.ok = function () {
+ $uibModalInstance.close();
+ };
+ vm.cancel = function () {
+ $uibModalInstance.dismiss('cancel');
+ };
+ });
+ })();*/

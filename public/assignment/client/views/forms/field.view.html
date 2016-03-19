@@ -1,107 +1,157 @@
-<!DOCTYPE html>
-<html lang="en">
-<body>
-<div class="container-fluid">
-    <div class="row-fluid">
-        <div class="main">
-            <h1>Forms</h1>
-
-            <ul class="nav nav-tabs">
-                <li role="presentation"><a class="tabText" href="#/forms">Forms</a></li>
-                <li role="presentation" class="active"><a class="tabText" href="#">Fields</a></li>
-            </ul>
-
-            <div class="container-fluid">
-                <div ng-repeat="field in model.existingFields" class="row topForm">
-                    <div class="col-xs-5">
-                        <form>
-                            <div class="form-group">
-                                <label>{{field.label}}</label>
-
-                                <div ng-switch on="field.type">
-                                    <input ng-switch-when="TEXT" type="text" placeholder={{field.placeholder}}>
-                                    <textarea ng-switch-when="TEXTAREA" class="form-control" rows="3"></textarea>
-                                    <input ng-switch-when="DATE" type="date">
-                                    <input ng-switch-when="EMAIL" type="email" placeholder={{field.placeholder}}>
-                                    <select ng-switch-when="OPTIONS">
-                                        <option ng-repeat="option in field.options">{{option.label}}</option>
-                                    </select>
-                                    <div class="checkbox" ng-switch-when="CHECKBOXES">
-                                        <label ng-repeat="option in field.options">
-                                            <input type="checkbox" value="">
-                                            {{option}}
-                                        </label>
-                                    </div>
-                                    <div class="radio" ng-switch-when="RADIOBUTTONS">
-                                        <label ng-repeat="option in field.options">
-                                            <input type="radio">
-                                            {{option.label}}
-                                        </label>
-                                    </div>
-                                </div>
+<h1 class="page-header">Forms</h1>
+<ul class="nav nav-tabs">
+    <li role="presentation"><a href="#/forms">Forms</a></li>
+    <li role="presentation" class="active"><a href="#formFields">Fields</a></li>
+</ul>
+<br>
+<div class="container" id="formFields">
+    <div ui-sortable="sortableFields" ng-model="model.fields">
+        <div ng-repeat="field in model.fields">
+            <div ng-switch="field.type">
+                <div class="row" ng-switch-when="TEXT">
+                    <div class="col-sm-9">
+                        <label for="inputName">{{field.label}}</label>
+                        <div class="row">
+                            <div class="col-xs-8 col-sm-6">
+                                <input type="text" class="form-control" id="inputName" placeholder="field.placeholder">
                             </div>
-                        </form>
-                    </div>
-                    <div class="col-xs-5">
-                        <button ng-click="model.editField(field)" href="#" class="glyphicon glyphicon-pencil"></button>
-                        <span href="#" class="glyphicon glyphicon-plus"></span>
-                        <button href="#" class="glyphicon glyphicon-remove" data-target="#myModal"></button>
-                        <span href="#" class="glyphicon glyphicon-menu-hamburger"></span>
-                    </div>
-                </div>
-
-                <!-- Modal -->
-                <div id="myModal" class="modal fade" role="dialog">
-                    <div class="modal-dialog">
-
-                        <!-- Modal content-->
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                <h4 class="modal-title">Modal Header</h4>
-                            </div>
-                            <div class="modal-body">
-                                <p>Some text in the modal.</p>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            <div class="col-xs-4 col-sm-6">
+                                <a href=""><span class="glyphicon glyphicon-pencil incrsize"
+                                                 ng-click="model.textPop()"></span></a>
+                                <a href=""><span class="glyphicon glyphicon-plus incrsize"></span></a>
+                                <a href=""><span class="glyphicon glyphicon-remove incrsize"
+                                                 ng-click="model.removeField($index)"></span></a>
+                                <a href=""><span class="glyphicon glyphicon-align-justify incrsize"></span></a>
                             </div>
                         </div>
-
                     </div>
                 </div>
-
-                <div class="row">
-                    <div class="col-xs-12">
-                        <hr>
+                <br>
+                <div class="row" ng-switch-when="DATE">
+                    <div class="col-sm-9">
+                        <label for="inputDate">{{field.label}}</label>
+                        <div class="row">
+                            <div class="col-xs-8 col-sm-6">
+                                <input type="date" class="form-control" id="inputDate" placeholder="field.placeholder">
+                            </div>
+                            <div class="col-xs-4 col-sm-6">
+                                <a href=""><span class="glyphicon glyphicon-pencil incrsize"
+                                                 ng-click="model.datePop()"></span></a>
+                                <a href=""><span class="glyphicon glyphicon-plus incrsize"></span></a>
+                                <a href=""><span class="glyphicon glyphicon-remove incrsize"
+                                                 ng-click="model.removeField($index)"></span></a>
+                                <a href=""><span class="glyphicon glyphicon-align-justify incrsize"></span></a>
+                            </div>
+                        </div>
                     </div>
                 </div>
-
-                <div class="row">
-                    <div class="col-xs-7">
-                        <form>
-                            <div class="form-group">
-                                <label for="newForm">Add New Field:</label>
-                                <select ng-model="model.fieldType" class="form-control" id="newForm">
-                                    <option>Single Line Text Field</option>
-                                    <option>Multi Line Text Field</option>
-                                    <option>Date Field</option>
-                                    <option>Dropdown Field</option>
-                                    <option>Checkboxes Field</option>
-                                    <option>Radio Buttons Field</option>
+                <br>
+                <div class="row" ng-switch-when="OPTIONS">
+                    <div class="col-sm-9">
+                        <label for="inputGender">{{field.label}}</label>
+                        <div class="row">
+                            <div class="col-xs-8 col-sm-6">
+                                <select name="gender" id="inputGender" class="form-control">
+                                    <option value="option.value" ng-repeat="option in field.options">{{option.label}}
+                                    </option>
                                 </select>
                             </div>
-                        </form>
-                    </div>
-                    <div class="col-xs-5">
-                        <button ng-click="model.addField(model.fieldType)" href="#" class="glyphicon glyphicon-plus"></button>
+                            <div class="col-xs-4 col-sm-6">
+                                <a href=""><span class="glyphicon glyphicon-pencil incrsize"
+                                                 ng-click="model.optionsPop()"></span></a>
+                                <a href=""><span class="glyphicon glyphicon-plus incrsize"></span></a>
+                                <a href=""><span class="glyphicon glyphicon-remove incrsize"
+                                                 ng-click="model.removeField($index)"></span></a>
+                                <a href=""><span class="glyphicon glyphicon-align-justify incrsize"></span></a>
+                            </div>
+                        </div>
                     </div>
                 </div>
-
-            </div> <!-- End of container -->
-
-        </div> <!-- End of main -->
-    </div> <!-- End of row-fluid-->
-</div> <!-- End of container-fluid -->
-</body>
-</html>
+                <br>
+                <div class="row" ng-switch-when="CHECKBOXES">
+                    <div class="col-sm-9">
+                        <label>{{field.label}}</label>
+                        <div class="row">
+                            <div class="col-xs-8 col-sm-6">
+                                <div class="checkbox" id="inputRole" ng-repeat="option in field.options">
+                                    <label><input type="checkbox" value="option.value">{{option.label}}</label>
+                                </div>
+                            </div>
+                            <div class="col-xs-4 col-sm-6">
+                                <a href=""><span class="glyphicon glyphicon-pencil incrsize"
+                                                 ng-click="model.checkboxPop()"></span></a>
+                                <a href=""><span class="glyphicon glyphicon-plus incrsize"></span></a>
+                                <a href=""><span class="glyphicon glyphicon-remove incrsize"
+                                                 ng-click="model.removeField($index)"></span></a>
+                                <a href=""><span class="glyphicon glyphicon-align-justify incrsize"></span></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <div class="row" ng-switch-when="RADIOS">
+                    <div class="col-sm-9">
+                        <label>{{field.label}}</label>
+                        <div class="row">
+                            <div class="col-xs-8 col-sm-6">
+                                <div class="radio" ng-repeat="option in field.options">
+                                    <label><input type="radio" value="option.value"
+                                                  name="optradio">{{option.label}}</label>
+                                </div>
+                            </div>
+                            <div class="col-xs-4 col-sm-6">
+                                <a href=""><span class="glyphicon glyphicon-pencil incrsize"
+                                                 ng-click="model.radioPop()"></span></a>
+                                <a href=""><span class="glyphicon glyphicon-plus incrsize"></span></a>
+                                <a href=""><span class="glyphicon glyphicon-remove incrsize"
+                                                 ng-click="model.removeField($index)"></span></a>
+                                <a href=""><span class="glyphicon glyphicon-align-justify incrsize"></span></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" ng-switch-when="TEXTAREA">
+                    <div class="col-sm-9">
+                        <label>{{field.label}}</label>
+                        <div class="row">
+                            <div class="col-xs-8 col-sm-6">
+                                <textarea class="form-control" rows="4" id="comment"></textarea>
+                            </div>
+                            <div class="col-xs-4 col-sm-6">
+                                <a href=""><span class="glyphicon glyphicon-pencil incrsize"
+                                                 ng-click="model.textAreaPop()"></span></a>
+                                <a href=""><span class="glyphicon glyphicon-plus incrsize"></span></a>
+                                <a href=""><span class="glyphicon glyphicon-remove incrsize"
+                                                 ng-click="model.removeField($index)"></span></a>
+                                <a href=""><span class="glyphicon glyphicon-align-justify incrsize"></span></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br>
+            </div>
+        </div>
+        <hr class="separator">
+    </div>
+    <div class="row">
+        <div class="col-sm-9">
+            <label for="inputField">Add New Field:</label>
+            <div class="row">
+                <div class="col-xs-8 col-sm-6">
+                    <select name="gender" id="inputField" class="form-control" ng-model="model.fieldType">
+                        <option value="Single Line Text" selected>Single Line Text</option>
+                        <option value="Date">Date</option>
+                        <option value="Dropdown">Dropdown</option>
+                        <option value="Checkboxes">Checkboxes</option>
+                        <option value="Radio buttons">Radio buttons</option>
+                        <option value="Multiline Text">Multiline Text</option>
+                    </select>
+                </div>
+                <div class="col-xs-4 col-sm-6">
+                    <span>&nbsp;</span><a href=""><span class="glyphicon glyphicon-plus incrsize"
+                                                        ng-click='model.addField(model.fieldType)'></span></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -26,16 +26,15 @@
                 controllerAs: "model"
             })
 
-            .when("/forms", {
+            .when('/forms', {
                 templateUrl: "views/forms/forms.view.html",
-                controller:"FormController",
+                controller: "FormController",
                 controllerAs: "model"
             })
-
-            .when("/fields", {
+            .when('/forms/:formId/fields', {
                 templateUrl: "views/forms/field.view.html",
-                controller: "FieldController",
-                controllerAs:"model"
+                controller : "FieldController",
+                controllerAs: "model"
             })
 
             .when("/register", {
@@ -47,6 +46,12 @@
             .when("/login", {
                 templateUrl: "views/users/login.view.html",
                 controller:"LoginController",
+                controllerAs:"model"
+            })
+
+            .when("/header", {
+                templateUrl: "views/header/header.view.html",
+                controller:"HeaderController",
                 controllerAs:"model"
             })
 
