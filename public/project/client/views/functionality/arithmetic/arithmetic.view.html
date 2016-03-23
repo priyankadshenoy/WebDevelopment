@@ -14,11 +14,11 @@
         </thead>
         <tbody>
         <tr>
-            <td><input type="number"  class="form-control"  placeholder="Operand 1" ng-model="operator1"></td>
+            <td><input type="number"  class="form-control"  placeholder="Operand 1" ng-model="model.data.operator1"></td>
         </tr>
         <tr>
             <td>
-                <select class="btn btn-primary form form-control" ng-model="operator">
+                <select ng-model="model.data.operator" class="btn btn-primary form form-control">
                     <option value="+" selected="selected">Add</option>
                     <option value="-">Subtract</option>
                     <option value="*">Multiply</option>
@@ -28,12 +28,12 @@
          </tr>
 
          <tr>
-             <td><input type="number"  class="form-control"  placeholder="Operand 2" ng-model="operator2"></td>
+             <td><input type="number"  class="form-control"  placeholder="Operand 2" ng-model="model.data.operator2"></td>
          </tr>
          <tr>
              <td>
                  <div class="form-group">
-                     <button ng-click="answer()" class="btn btn-primary btn-block">Login</button>
+                     <button ng-click="model.arithanswer(model.data);" class="btn btn-primary btn-block">Login</button>
                  </div>
              </td>
 

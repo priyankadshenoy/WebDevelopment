@@ -11,7 +11,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#/home">Form Maker</a>
+            <a class="navbar-brand" href="#/home">Script Editor</a>
         </div>
 
         <div id="navbar" class="navbar-collapse collapse">
@@ -25,14 +25,14 @@
                     data-toggle="collapse" data-target=".navbar-collapse.in">
                     <a href="#/profile">Profile</a></li>
 
-                <li ng-show="currentUser.roles.indexOf('admin') >= 0"
+               <!-- <li ng-show="currentUser.roles.indexOf('admin') >= 0"
                     ng-class="{'active': $location.url() == '/admin'}" data-toggle="collapse"
                     data-target=".navbar-collapse.in">
                     <a href="#/admin">Admin</a></li>
 
                 <li ng-show="currentUser" ng-class="{'active': $location.url() == '/form'}"
                     data-toggle="collapse" data-target=".navbar-collapse.in">
-                    <a href="#/forms">Forms</a></li>
+                    <a href="#/forms">Forms</a></li>-->
 
             </ul>
 
@@ -43,14 +43,14 @@
 
                 <li ng-hide="currentUser" ng-class="{'active': $location.url() == '/login'}"
                     data-toggle="collapse" data-target=".navbar-collapse.in">
-                    <a href="#/user"> Login</a></li>
+                    <a href="#/login"> Login</a></li>
 
                 <li ng-show="currentUser" ng-class="{'active': $location.url() == '/profile'}"
                     data-toggle="collapse" data-target=".navbar-collapse.in">
                     <a href="#/profile">{{currentUser.username}}</a></li>
 
                 <li ng-show="currentUser" data-toggle="collapse" data-target=".navbar-collapse.in">
-                    <a href="#/home" ng-click="logout()">Logout</a></li>
+                    <a href="#/login" ng-click="logout()">Logout</a></li>
 
             </ul>
         </div>

@@ -9,7 +9,7 @@
         $routeProvider
 
             .when("/home", {
-                templateUrl: "views/home/home.view.html",
+                templateUrl: "views/home/home.view.html"
                 //controller:"HomeController",
                 //controllerAs:"model"
             })
@@ -43,7 +43,7 @@
                 controllerAs:"model"
             })
 
-            .when("/login", {
+            .when("/user", {
                 templateUrl: "views/users/login.view.html",
                 controller:"LoginController",
                 controllerAs:"model"

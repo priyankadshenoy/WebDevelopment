@@ -1,0 +1,87 @@
+.text-justify {
+    text-align: justify;
+}
+
+.pull-left {
+    float: left ;
+}
+.pull-right
+{
+    float: right;
+}
+.col-6 {
+    float: left;
+    width: 50%;
+    position: relative;
+    min-height: 1px;
+    margin-left: 15px;
+    margin-right: 60px;
+}
+
+.text-wrap
+{
+  white-space: nowrap;
+
+}
+.row
+{
+    margin-left: -15px;
+    margin-right: -1px;
+}
+
+.incrsize {
+    font-size: 130%;
+}
+
+.separator {
+    color: black;
+    background-color: black;
+    border-color: black;
+}
+
+.form-horizontal .form-group label {
+    text-align: left;
+}
+
+a {
+    cursor: pointer;
+}
+
+#modalInput {
+    width : 40%;
+}
+
+body {
+    padding-top:70px;
+}
+
+/* responsive text queries */
+@media screen and (max-width: 992px) {
+    p,.btn,input,div,span,h4 {
+        font-size: 95%;
+    }
+    h1 {
+        font-size: 24px;
+    }
+    h2 {
+        font-size: 22px;
+    }
+    h3 {
+        font-size: 18px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    p,.btn,input,div,span,h4 {
+        font-size: 90%;
+    }
+    h1 {
+        font-size: 20px;
+    }
+    h2 {
+        font-size: 18px;
+    }
+    h3 {
+        font-size: 16px;
+    }
+}
