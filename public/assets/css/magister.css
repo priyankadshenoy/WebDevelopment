@@ -365,3 +365,7 @@ a:hover, a:active { color:#fff; text-decoration: underline; }
 
 
 
+img{
+	width: 20%;
+	height: 20%;
+}
