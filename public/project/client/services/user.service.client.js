@@ -22,7 +22,7 @@
         }
 
         function findUserByCredentials(credentials) {
-            return $http.get("/api/assignment/user/" + credentials.username+ "/" + credentials.password);
+            return $http.get("/api/project/user/" + credentials.username+ "/" + credentials.password);
         }
 
         function findAllUsers() {
