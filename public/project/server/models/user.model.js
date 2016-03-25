@@ -11,11 +11,36 @@ module.exports = function (app) {
         findUserByUsername: findUserByUsername,
         findUserByCredentials: findUserByCredentials,
         find: find,
-        comparison: comparison
-        //logical: logical
-    };
+        comparison: comparison,
+        logical: logical,
+        findDay: findDay,
+        findDate: findDate,
+        findDatePre: findDatePre,
+        findDatePost: findDatePost
+
+};
 
     return api;
+
+    function findDatePre(pre){
+        var d=new Date();
+        d.setDate(d.getDate()-pre);
+        return d;
+    }
+    function findDatePost(post){
+        var d1=new Date();
+        d1.setDate(d1.getDate()+ post);
+        return d1;
+    }
+
+    function findDate(pick){
+        return(pick.getTime());
+    }
+
+    function findDay(pick){
+        var days = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+        return(days[pick.getDay()]);
+    }
 
 
     function comparison(findBool1){

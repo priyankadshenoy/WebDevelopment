@@ -7,10 +7,7 @@
         var vm = this;
         vm.arithanswer = arithanswer;
         var currentUser = $rootScope.currentUser;
-
-
         function init(){
-
         }init();
 
         function arithanswer(data){

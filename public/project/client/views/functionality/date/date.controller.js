@@ -1,4 +1,64 @@
-(function(){
+(function() {
+    "use strict";
+    angular.module("ProjectApp")
+        .controller("DateController",DateController);
+
+    function DateController($scope,$location,UserService,$rootScope) {
+        var vm = this;
+        vm.dategetday = dategetday;
+        vm.dategettime= dategettime;
+        vm.datepre = datepre;
+        vm.datepost= datepost;
+        var currentUser = $rootScope.currentUser;
+        function init(){
+        }init();
+
+        function datepre(pre){
+            UserService.findDatePre(pre)
+                .then(function(response){
+                    if(response.data){
+                        vm.result=response.data;
+                    }
+                    else
+                        console.log("No data available");
+                });
+        }
+
+        function datepost(post){
+            UserService.findDatePost(post)
+                .then(function(response){
+                    if(response.data){
+                        vm.result=response.data;
+                    }
+                    else
+                        console.log("No data available");
+                });
+        }
+
+        function dategetday(pick){
+            UserService.findDay(pick)
+                .then(function(response){
+                    if(response.data){
+                        vm.result=response.data;
+                    }
+                    else
+                        console.log("No data available");
+                });}
+
+
+        function dategettime(pick){
+            UserService.findDate(pick)
+                .then(function(response){
+                    if(response.data){
+                        vm.result=response.data;
+                    }
+                    else
+                        console.log("No data available");
+                });
+        }
+
+        }})();
+/*(function(){
         angular
             .module("ProjectApp")
             .controller("DateController",DateController);
@@ -35,4 +95,4 @@
 
         }
     }
-)();
+)();*/

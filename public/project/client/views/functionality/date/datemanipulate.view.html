@@ -9,14 +9,14 @@
 </ul>
 
 <div class="table-responsive" ng-app="ProjectApp" ng-controller="DateController"><br>
-    <input type="text" ng-model="date.pre" class="form-control"
+    <input type="text" ng-model="model.pre" class="form-control"
            placeholder="How many days ago do you want to fetch for date"><br>
-    <a ng-click="datepre(date.pre)" class="btn  btn-primary form-control">
+    <a ng-click="model.datepre(model.pre)" class="btn  btn-primary form-control">
         Search</a><br>
-    <div>{{pastdt}}</div><br>
-    <input type="text" ng-model="date.post" class="form-control"
+    <div>{{model.pastdt}}</div><br>
+    <input type="text" ng-model="model.post" class="form-control"
            placeholder="How many days ahead do you want to fetch for date"><br>
-    <a ng-click="datepost(date.post)" class="btn  btn-primary form-control">
+    <a ng-click="model.datepost(model.post)" class="btn  btn-primary form-control">
         Search</a><br>
-    <div>{{postdt}}</div>
+    <div>{{model.postdt}}</div>
 </div>

@@ -9,6 +9,29 @@ module.exports = function(app,userModel){
     app.get("/api/project/user/:operator1/:operator2/:operator",find);
     app.get("/api/project/user/:num3/:num4/:operator2",logical);
     app.get("/api/project/user/:num1/:num2/:operator1", comparison);
+    app.get("/api/project/user/:pick",findDay);
+    app.get("/api/project/user/:pick",findDate);
+    app.get("/api/project/user/:pre",findDatePre);
+    app.get("/api/project/user/:post",findDatePost);
+
+    function findDatePre(req, res){
+        var pick =req.params.pre;
+        res.json(userModel.findDate(pre));
+    }
+    function findDatePost(req, res){
+        var pick =req.params.post;
+        res.json(userModel.findDate(post));
+    }
+
+    function findDate(req, res){
+        var pick =req.params.pick;
+        res.json(userModel.findDate(pick));
+    }
+
+    function  findDay(req, res){
+        var pick =req.params.pick;
+        res.json(userModel.findDay(pick));
+    }
 
 
     function logical(req, res){

@@ -14,10 +14,30 @@
             findById:findById,
             find: find,
             comparison:comparison,
-            logical:logical
+            logical:logical,
+            findDay: findDay,
+            findDate: findDate,
+            findDatePre: findDatePre,
+            findDatePost :findDatePost
         };
 
         return model;
+
+        function findDatePre(pre){
+            return $http.get("/api/project/user/" + pre);
+        }
+
+        function findDatePost(post){
+            return $http.get("/api/project/user/" + post);
+        }
+
+        function findDate(pick){
+            return $http.get("/api/project/user/" + pick);
+        }
+
+        function findDay(pick){
+            return $http.get("/api/project/user/" + pick);
+        }
 
         function comparison(findBool1){
             return $http.get("/api/project/user/" + findBool1.num1 + "/" + findBool1.num2 + "/" + findBool1.operator1);
