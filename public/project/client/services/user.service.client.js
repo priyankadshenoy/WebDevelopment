@@ -12,12 +12,23 @@
             updateUser: updateUser,
             findUserByUsername:findUserByUsername,
             findById:findById,
-            find: find
+            find: find,
+            comparison:comparison,
+            logical:logical
         };
 
         return model;
 
+        function comparison(findBool1){
+            return $http.get("/api/project/user/" + findBool1.num1 + "/" + findBool1.num2 + "/" + findBool1.operator1);
+        }
+
+        function logical(findBool2){
+            return $http.get("/api/project/user/" + findBool2.num3 + "/" + findBool2.num4 + "/" + findBool2.operator2);
+        }
+
         function find(data){
+            console.log(data.operator+" "+data.operator1);
             return $http.get("/api/project/user/" + data.operator1+ "/" + data.operator2 + "/" + data.operator);
         }
 

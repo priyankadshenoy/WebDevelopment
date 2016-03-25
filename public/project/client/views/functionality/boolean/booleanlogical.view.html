@@ -8,17 +8,17 @@
 </ul>
 <div class="table-responsive" ng-app="ProjectApp" ng-controller="BooleanController"><br>
     <input type = "number" class = "form-control"
-           placeholder = "Number for logical operation" ng-model="bool.num1"><br>
+           placeholder = "Number for logical operation" ng-model="model.bool2.num3"><br>
     <input type = "number" class = "form-control"
-           placeholder = "Number for logical operation" ng-model="bool.num2"><br>
-    <select class="btn btn-primary form form-control" ng-model="operator">
+           placeholder = "Number for logical operation" ng-model="model.bool2.num4"><br>
+    <select class="btn btn-primary form form-control" ng-model="model.bool2.operator2">
         <option value="&" selected="selected">Logical And</option>
         <option value="|">Logical Or</option>
         <option value="^">XOR</option>
         <option value="<<">Left Shift</option>
         <option value=">>">Right Shift</option>
     </select>
-    <button ng-click="logical(bool.num1, bool.num2, operator)"
+    <button ng-click="model.logical(model.bool2);"
             class="btn btn-primary btn-block form-control">Find me?
     </button>
     <br>

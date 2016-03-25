@@ -1,59 +1,54 @@
-(function(){
-    angular
-        .module("ProjectApp")
+(function() {
+    "use strict";
+    angular.module("ProjectApp")
         .controller("BooleanController",BooleanController);
 
-    function BooleanController($scope) {
-            $scope.comparison=comparison;
-            $scope.logical=logical;
-            $scope.result;
+    function BooleanController($scope,$location,UserService,$rootScope) {
+        var vm = this;
+        vm.comparison = comparison;
+        vm.logical = logical;
+        var currentUser = $rootScope.currentUser;
+        function init(){
+        }init();
 
-        function comparison(num1, num2, operator) {
-            //console.log(num1 +" "+ num2);
-            if (operator == '>') {
-                if (num1 > num2)
-                    $scope.result = "Oh yes " + num1 + " is greater than " + num2;
-                else
-                    $scope.result = "No "+ num1 + " is not greater than " + num2;
-            }
-            if (operator == '<') {
-                if (num1 < num2)
-                    $scope.result = "Oh yes **" + num1 + " is smaller than " + num2;
-                else
-                    $scope.result = "Nope "+ num1 + " is not smaller than " + num2;
-            }
-            if (operator == '='){
 
-                if (num1 == num2)
-                    $scope.result = "Yaay " + num1 + " is equal to " + num2;
-                else
-                    $scope.result = "No No "+ num1 + " is not equal to" + num2;
-            }
-        }
+            function comparison(bool1) {
+                vm.result="";
+                var findBool1={
+                    num1:bool1.num1,
+                    num2:bool1.num2,
+                    operator1:bool1.operator1
 
-        function logical(num1, num2, operator){
+                };
 
-            if (operator == '&'){
-                $scope.result = (num1 & num2);
-                //console.log(result);
-            }
-            if (operator == '|'){
-                $scope.result = (num1 | num2);
-                //console.log(result);
-            }
-            if (operator == '^'){
-                $scope.result = (num1 ^ num2);
-                //console.log(result);
-            }
-            if (operator == '<<'){
-                $scope.result = (num1 << num2);
-                //console.log(result);
-            }
-            if (operator == '>>'){
-                $scope.result = (num1 >> num2);
-                //console.log(result);
+                UserService.comparison(findBool1)
+                    .then(function(response){
+                        if(response.data){
+                            vm.result=response.data;
+                            //console.log(vm.result);
+                        }
+                        else
+                            vm.result="Invalid Operation";
+                    });
             }
 
+
+        function logical(bool2){
+            var findBool2={
+                num3:bool2.num3,
+                num4:bool2.num4,
+                operator2:bool2.operator2
+            };
+
+
+            UserService.logical(findBool2)
+                .then(function(response){
+                    if(response.data){
+                        vm.result=response.data;
+                    }
+                    else
+                        vm.result="Invalid Operation";
+                });
         }
 
     }})();

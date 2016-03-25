@@ -7,17 +7,17 @@
     <li role="presentation"><a href="#/booleanlogical">Logical Operations</a></li>
 </ul>
 <div class="table-responsive" ng-app="ProjectApp" ng-controller="BooleanController"><br>
-    <input type = "number" class = "form-control"  placeholder = "Number for comparison" ng-model="bool.num1"><br>
-    <input type = "number" class = "form-control"  placeholder = "Number for comparison" ng-model="bool.num2"><br>
-    <select class="btn btn-primary form form-control" ng-model="operator">
+    <input type = "number" class = "form-control"  placeholder = "Number for comparison" ng-model="model.bool1.num1"><br>
+    <input type = "number" class = "form-control"  placeholder = "Number for comparison" ng-model="model.bool1.num2"><br>
+    <select class="btn btn-primary form form-control" ng-model="model.bool1.operator1">
         <option value="=" selected="selected">Are they equal?</option>
         <option value=">">Is A > B?</option>
         <option value="<">Is A <  B?</option>
         <!--<option value="===">Equal by type?</option>-->
     </select>
-    <button ng-click="comparison(bool.num1, bool.num2, operator)"
+    <button ng-click="model.comparison(model.bool1);"
             class="btn btn-primary btn-block form-control">Login
         </button>
         <br>
-    <div>{{result}}</div>
+    <div>{{model.result}}</div>
 </div>

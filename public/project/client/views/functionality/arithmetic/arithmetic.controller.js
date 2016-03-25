@@ -7,15 +7,14 @@
         var vm = this;
         vm.arithanswer = arithanswer;
         var currentUser = $rootScope.currentUser;
-//        vm.operator1= currentUser.operator1;
-  //      vm.operator2= currentUser.operator2;
-    //    vm.operator= currentUser.operator;
+
 
         function init(){
 
         }init();
 
         function arithanswer(data){
+            vm.result=0;
             console.log("in controller"+ data);
             var findData={
                 operator1:data.operator1,
@@ -26,7 +25,8 @@
             UserService.find(findData)
                 .then(function(response){
                     if(response.data){
-                        console.log(response.data);
+                        vm.result=response.data;
+                        //console.log(vm.result);
                     }
                     else
                         console.log("No data available");
