@@ -17,10 +17,10 @@
             UserService.findDatePre(pre)
                 .then(function(response){
                     if(response.data){
-                        vm.result=response.data;
+                        vm.result1=response.data;
                     }
                     else
-                        console.log("No data available");
+                        vm.result1="No data available";
                 });
         }
 
@@ -28,10 +28,10 @@
             UserService.findDatePost(post)
                 .then(function(response){
                     if(response.data){
-                        vm.result=response.data;
+                        vm.result2=response.data;
                     }
                     else
-                        console.log("No data available");
+                        vm.result2="No data available";
                 });
         }
 
@@ -39,10 +39,10 @@
             UserService.findDay(pick)
                 .then(function(response){
                     if(response.data){
-                        vm.result=response.data;
+                        vm.result3=response.data;
                     }
                     else
-                        console.log("No data available");
+                        vm.result3="No data available";
                 });}
 
 
@@ -50,10 +50,10 @@
             UserService.findDate(pick)
                 .then(function(response){
                     if(response.data){
-                        vm.result=response.data;
+                        vm.result4=response.data;
                     }
                     else
-                        console.log("No data available");
+                        vm.result4="No data available";
                 });
         }
 

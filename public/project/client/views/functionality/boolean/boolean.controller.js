@@ -34,12 +34,12 @@
 
 
         function logical(bool2){
+            vm.result="";
             var findBool2={
                 num3:bool2.num3,
                 num4:bool2.num4,
                 operator2:bool2.operator2
             };
-
 
             UserService.logical(findBool2)
                 .then(function(response){

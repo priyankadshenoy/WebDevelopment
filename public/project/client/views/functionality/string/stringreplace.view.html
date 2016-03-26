@@ -17,12 +17,12 @@
     create simple lines of code</p>
     <br>
     Which text would you like to replace?
-    <input type="text" ng-model="string.replacee" class="form-control" placeholder="Replace me?">
+    <input type="text" ng-model="model.strrep.replacee" class="form-control" placeholder="Replace me?">
     With what text?
-    <input type="text" ng-model="string.replacement" class="form-control" placeholder="I am the replacement">
+    <input type="text" ng-model="model.strrep.replacement" class="form-control" placeholder="I am the replacement">
 
-    <a ng-click="stringreplace(string.replacee, string.replacement)" class="btn btn-default form-control">
+    <a ng-click="model.stringReplace(model.strrep)" class="btn btn-default form-control">
         Replace</a>
     <br>
-    <div>{{match}}</div>
+    <div>{{model.rep}}</div>
 </div>

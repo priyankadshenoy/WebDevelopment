@@ -1,4 +1,81 @@
-(function(){
+(function() {
+    "use strict";
+    angular.module("ProjectApp")
+        .controller("StringController",StringController);
+
+    function StringController($scope,$location,UserService,$rootScope) {
+        var vm = this;
+        vm.stringSearch = stringSearch;
+        vm.stringConcat =stringConcat;
+        vm.stringReplace= stringReplace;
+        vm.stringSub=stringSub;
+        var currentUser = $rootScope.currentUser;
+        function init(){
+        }init();
+
+        function stringSearch(ssearch){
+            UserService.stringsearch(ssearch)
+                .then(function(response){
+                    if(response.data){
+                        vm.result=response.data;
+                        //console.log(vm.result);
+                    }
+                    else
+                        vm.result="No data available";
+                });
+        }
+
+        function stringConcat(str){
+            var strcon={
+                con1:str.con1,
+                con2:str.con2
+            };
+            UserService.stringconcat(strcon)
+                .then(function(response){
+                    if(response.data){
+                        vm.match=response.data;
+                    }
+                    else
+                        vm.match= "No data available";
+                });
+        }
+
+        function stringReplace(strrep){
+            var strrep={
+                replacee:strrep.replacee,
+                replacement:strrep.replacement
+            };
+            UserService.stringreplace(strrep)
+                .then(function(response){
+                    if(response.data){
+                        vm.rep=response.data;
+                    }
+                    else
+                        vm.rep= "No data available";
+                });
+        }
+
+        function stringSub(slice){
+            var sslice={
+                sub1:slice.sub1,
+                sub2:slice.sub2
+            };
+            console.log(sslice);
+            UserService.stringsub(sslice)
+                .then(function(response){
+                    if(response.data){
+                        vm.sli=response.data;
+                    }
+                    else
+                        vm.sli= "No data available";
+                });
+        }
+
+    }})();
+
+
+
+/*(function(){
     angular
         .module("ProjectApp")
         .controller("StringController",StringController);
@@ -59,3 +136,4 @@
             }
 })();
 
+*/

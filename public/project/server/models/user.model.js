@@ -16,30 +16,96 @@ module.exports = function (app) {
         findDay: findDay,
         findDate: findDate,
         findDatePre: findDatePre,
-        findDatePost: findDatePost
+        findDatePost: findDatePost,
+        stringsearch: stringsearch,
+        stringconcat: stringconcat,
+        stringreplace: stringreplace,
+        stringsub: stringsub
 
 };
 
     return api;
 
+    function  stringsub(sslice){
+        console.log(sslice.sub1+"user model server");
+        var sub= "Hello I am Priyanka! I enjoy web development! :)";
+        var s = sub.substring(sslice.sub1, sslice.sub2);
+        return s;
+    }
+
+    function stringreplace(strrep){
+        var rep= "Hello I am Priyanka! I enjoy web development! :)" +
+            "I think programming is fun and if you have an" +
+            "understanding od concepts it is not difficult to " +
+            "create simple lines of code";
+        var q= rep.replace(strrep.replacee,strrep.replacement);
+        return q;
+    }
+
+    function stringconcat(strcon){
+        var s= strcon.con1.concat(" ",strcon.con2);
+        console.log(s);
+        return s;
+    }
+
+    function stringsearch(ssearch){
+        var ss=ssearch+"";
+        var str= "Lorem ipsum dolor sit amet, et vel tale mundi. " +
+            "Id corpora tacimates sed. Mazim copiosae ei qui, aliquid legimus" +
+            " dissentiunt per at. Sint patrioque mei ut, his cu atqui molestie gloriatur. " +
+            "Qui cu odio atqui clita, graeco recteque qui eu. Cu nam nullam dignissim, " +
+            "sed augue fabulas impedit cu. At nam affert pertinacia signiferumque, alii graeco commune eos ea, " +
+            "prima senserit eu vix. Veri admodum facilisis te vis, ridens sententiae reformidans usu at. " +
+            "Quis mundi accusam eu qui, pri dicta vivendo ea. His no nisl inani philosophia. " +
+            "Vituperata definitionem qui an, libris eruditi omittantur et vis. Cu pro conceptam pertinacia, " +
+            "ad sed iudico utamur dolorum, simul noluisse cu pro. Duo cu oblique diceret oportere.";
+            str = str.split(" ");
+            var t=0;
+            for(var i=0; i<str.length; i++)
+            {
+                if( str[i]== ss)
+                {
+                    t++;
+                    break;
+                }
+            }
+            if(t>0)
+                return("Yaay we found a match");
+            else
+                return("Oh no! We cant find you");
+
+    }
+
     function findDatePre(pre){
         var d=new Date();
         d.setDate(d.getDate()-pre);
+        //console.log(pre+ " " +d);
         return d;
+
     }
     function findDatePost(post){
+        var di= Number(post);
         var d1=new Date();
-        d1.setDate(d1.getDate()+ post);
+        d1.setDate(d1.getDate()+ di);
         return d1;
     }
 
-    function findDate(pick){
-        return(pick.getTime());
+        function findDate(pick){
+            var t=pick+"";
+            var g= new Date(t);
+            g= g.getTime();
+            return(g);
+        //return(pick.getTime());
+        //return("hello");
     }
 
     function findDay(pick){
-        var days = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
-        return(days[pick.getDay()]);
+          var test=pick+"";
+          return(test.substring(0,4));
+        //console.log(substring(pick, 1, 4));
+        //var days = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+        //var test=days[pick.getDay()];
+        //return("hello");
     }
 
 
@@ -67,41 +133,48 @@ module.exports = function (app) {
     }
 
    function logical(findBool2){
-        if (findBool2.operator2 == '>') {
-            if (findBool2.num3 > findBool2.num4)
-                return("Oh yes " + findBool2.num3 + " is greater than " + findBool2.num4);
-            else
-                return("No "+ findBool2.num3 + " is not greater than " + findBool2.num4);
-        }
-        if (findBool2.operator2 == '<') {
-            if (findBool2.num3 < findBool2.num4)
-                return("Oh yes **" + findBool2.num3 + " is smaller than " + findBool2.num4);
-            else
-                return("Nope "+ findBool2.num3 + " is not smaller than " + findBool2.num4);
-        }
-        if (findBool2.operator2 == '='){
+       if (findBool2.operator2 == '&'){
+           return(findBool2.num3 & findBool2.num4);
+          // console.log(findBool2.num3 & findBool2.num4);
+       }
+       if (findBool2.operator2 == '|'){
+           return(findBool2.num3 | findBool2.num4);
+       }
+       if (findBool2.operator2 == '^'){
+           return(findBool2.num3 ^ findBool2.num4);
+       }
+       if (findBool2.operator2 == '<<'){
+           return(findBool2.num3 << findBool2.num4);
+       }
+       if (findBool2.operator2 == '>>'){
+           return(findBool2.num3 >> findBool2.num4);
+       }
 
-            if (findBool2.num3 == findBool2.num4)
-                return("Yaay " + findBool2.num3 + " is equal to " + findBool2.num4);
-            else
-                return("No No "+ findBool2.num3 + " is not equal to" + findBool2.num4);
-        }
-    }
+   }
 
     function find(findData){
-        console.log("In findDate");
+        //console.log("In findDate");
         if (findData.operator == '+') {
-            return(findData.operator1+findData.operator2);
+            tt=Number(findData.operator1)+Number(findData.operator2);
+            tt=Number(tt.toFixed(2));
+            return tt;
 
         }
         if (findData.operator == '-') {
-            return(findData.operator1-findData.operator2);
+            tt=findData.operator1-findData.operator2;
+            tt=Number(tt.toFixed(2));
+            return tt;
         }
         if (findData.operator == '*') {
-            return(findData.operator1*findData.operator2);
+            tt=findData.operator1*findData.operator2;
+            tt=Number(tt.toFixed(2));
+            return tt;
+
         }
         if (findData.operator == "div") {
-            return(findData.operator1/findData.operator2);
+            var tt=Number(findData.operator1)/ Number(findData.operator2);
+            tt=Number(tt.toFixed(2));
+            return tt;
     }
     }
 

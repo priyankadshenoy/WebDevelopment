@@ -14,9 +14,9 @@
     Would you like like to cut your sentences into parts as per your wishes?
     <br><br>
     Hello I am Priyanka! I enjoy web development! :)
-    <input type="text" ng-model="string.sub1" class="form-control" placeholder="Index of first character to start cutting">
-    <input type="text" ng-model="string.sub2" class="form-control" placeholder="How many characters would you like to cut">
-    <a ng-click="stringsub(string.sub1, string.sub2)" class="btn btn-default form-control">Slice</a>
+    <input type="text" ng-model="model.slice.sub1" class="form-control" placeholder="Index of first character to start cutting">
+    <input type="text" ng-model="model.slice.sub2" class="form-control" placeholder="How many characters would you like to cut">
+    <a ng-click="model.stringSub(model.slice)" class="btn btn-default form-control">Slice</a>
     <br>
-    <div>{{match}}</div>
+    <div>{{model.sli}}</div>
 </div>

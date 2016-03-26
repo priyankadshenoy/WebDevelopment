@@ -12,9 +12,9 @@
 <div class="table-responsive" ng-app="ProjectApp" ng-controller="StringController">
 <br>
     Which two strings do you wish to join?
-    <input type="text" ng-model="string.con1" class="form-control" placeholder="First String to Join">
-    <input type="text" ng-model="string.con2" class="form-control" placeholder="First String to Join">
-    <a ng-click="stringconcat(string.con1, string.con2)" class="btn btn-default form-control">
+    <input type="text" ng-model="model.str.con1" class="form-control" placeholder="First String to Join">
+    <input type="text" ng-model="model.str.con2" class="form-control" placeholder="First String to Join">
+    <a ng-click="model.stringConcat(model.str)" class="btn btn-default form-control">
         Join</a>
-<div>{{match}}</div>
+<div>{{model.match}}</div>
 </div>
