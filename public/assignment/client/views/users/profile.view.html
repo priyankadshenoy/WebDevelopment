@@ -1,51 +1,43 @@
-<!DOCTYPE html>
-<html lang="en" ng-controller="ProfileController">
-
-<h1>Profile</h1>
-
-<div ng-show="message" class="alert alert-success" role="alert">{{message}}</div>
-
+<h1 class="page-header">Profile</h1>
 <form class="form-horizontal">
     <div class="form-group">
-        <label for="username" class="col-sm-2 control-label">Username</label>
-        <div class="col-sm-10">
-            <input type="text" ng-model="model.username" class="form-control" id="username" placeholder ="Username">
+        <label for="inputName" class="col-sm-2 control-label label-left">Username:</label>
+        <div class="col-sm-7">
+            <input type="text" size="10" class="form-control" id="inputName" placeholder="Username"
+                   ng-model="model.username">
         </div>
     </div>
-
     <div class="form-group">
-        <label for="password" class="col-sm-2 control-label">Password</label>
-        <div class="col-sm-10">
-            <input type="password" ng-model="model.password" class="form-control" id="password" placeholder="Password">
+        <label for="inputPassword3" class="col-sm-2 control-label">Password:</label>
+        <div class="col-sm-7">
+            <input type="password" class="form-control" id="inputPassword3" placeholder="Password"
+                   ng-model="model.password">
         </div>
     </div>
-
-    <div class="form-group text-nowrap">
-        <label for="firstName" class="col-sm-2 control-label">First Name</label>
-        <div class="col-sm-10">
-            <input type="text" ng-model="model.firstName" class="form-control" id="firstName" placeholder="FirstName">
-        </div>
-    </div>
-
-    <div class="form-group text-nowrap">
-        <label for="lastName" class="col-sm-2 control-label">Last Name</label>
-        <div class="col-sm-10">
-            <input type="text" ng-model="model.lastName" class="form-control" id="lastName" placeholder="LastName">
-        </div>
-    </div>
-
     <div class="form-group">
-        <label for="email" class="col-sm-2 control-label">Email</label>
-        <div class="col-sm-10">
-            <input type="email" ng-model="model.email" class="form-control" id="email" placeholder="Email">
+        <label for="inputName2" class="col-sm-2 control-label">First Name:</label>
+        <div class="col-sm-7">
+            <input type="text" class="form-control" id="inputName2" placeholder="First Name" ng-model="model.firstName">
         </div>
     </div>
-
     <div class="form-group">
-        <div class="col-sm-offset-2 col-sm-10">
-            <a ng-click="model.update(model.username,model.password,model.firstName,model.lastName,model.email);"
-               class="btn btn-primary btn-block" role="button">Update</a>
+        <label for="inputName3" class="col-sm-2 control-label">Last Name:</label>
+        <div class="col-sm-7">
+            <input type="text" class="form-control" id="inputName3" placeholder="Last Name" ng-model="model.lastName">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="inputEmail3" class="col-sm-2 control-label">Email:</label>
+        <div class="col-sm-7">
+            <input type="email" class="form-control" id="inputEmail3" placeholder="Email" ng-model="model.email">
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-7">
+            <button type="submit" class="btn btn-default btn-primary btn-block" ng-click="model.update(model)">Update
+            </button>
         </div>
     </div>
 </form>
-</html>
+
+

@@ -1,35 +1,34 @@
-(function(){
-    angular.module("FormBuilderApp")
-        .factory("FormService",FormService);
+(function() {
+    'use strict';
+    angular
+        .module("FormBuilderApp")
+        .factory("FormService", FormService);
 
-    function FormService($http){
+    function FormService($http) {
 
-        var model = {
-            findAllFormsForUser:findAllFormsForUser,
-            findFormByTitle:findFormByTitle,
-            deleteForm:deleteForm,
-            addForm:addForm,
-            updateForm:updateForm
-        }
-        return model;
+        var service = {
+            createFormForUser: createFormForUser,
+            findAllFormsForUser: findAllFormsForUser,
+            deleteFormById: deleteFormById,
+            updateFormById: updateFormById
+        };
 
-        function findFormByTitle(title){
-            return $http.get("/api/assignment/findFormByTitle/"+title);
-        }
+        return service;
 
-        function addForm(form,id){
-            return $http.post("/api/assignment/addForm/user/"+id+"/form",form);
+        function createFormForUser(userId, form) {
+            return $http.post('/api/assignment/user/' + userId + '/form', form);
         }
 
-        function findAllFormsForUser(id){
-            return $http.get("/api/assignment/findAllFormsForUser/"+id+"/form");
+        function findAllFormsForUser(userId) {
+            return $http.get('/api/assignment/user/' + userId + '/form');
         }
 
-        function deleteForm(formToDelete,userId){
-            return $http.delete("/api/assignment/form/"+formToDelete+"/"+userId);
+        function deleteFormById(formId) {
+            return $http.delete('/api/assignment/form/' + formId);
         }
-        function updateForm(formToBeUpdatedId,form){
-            return $http.put("/api/assignment/form/"+formToBeUpdatedId,form);
+
+        function updateFormById(formId, newForm) {
+            return $http.put('/api/assignment/form/' + formId, newForm);
         }
     }
 })();

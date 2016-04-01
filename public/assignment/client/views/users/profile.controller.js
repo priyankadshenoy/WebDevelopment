@@ -1,42 +1,45 @@
-(function() {
-    "use strict";
-    angular.module("FormBuilderApp")
+(function () {
+    'use strict';
+    angular
+        .module("FormBuilderApp")
         .controller("ProfileController", ProfileController);
 
-    function ProfileController($scope,UserService,$rootScope) {
+    function ProfileController($rootScope, UserService) {
+
         var vm = this;
+
+        function init() {
+            vm.username = $rootScope.currentUser.username;
+            vm.password = $rootScope.currentUser.password;
+            vm.email = $rootScope.currentUser.emails[0];
+            vm.firstName = $rootScope.currentUser.firstName;
+            vm.lastName = $rootScope.currentUser.lastName;
+        }
+        init();
+
+
         vm.update = update;
-        var currentUser = $rootScope.currentUser;
-        vm.username= currentUser.username;
-        vm.password= currentUser.password;
-        vm.firstName = currentUser.firstName;
-        vm.lastName = currentUser.lastName;
-        vm.email = currentUser.email;
 
-        function init(){
 
-        }init();
 
-        function update(username,password,firstName,lastName,email) {
-            $scope.message = null;
-            var id = currentUser._id;
-            var userDetails={
-                "_id":id,
-                "username":username,
-                "password":password,
-                "firstName":firstName,
-                "lastName":lastName,
-                "email":email
+        function update(usr) {
+            var id = $rootScope.currentUser._id;
+            var user = {
+                username: usr.username,
+                password: usr.password,
+                firstName: usr.firstName,
+                lastName: usr.lastName,
+                emails: usr.email
             };
-            UserService.updateUser(id,userDetails)
-                .then(function(response){
-                    if(response.data)
-                    {
-                        UserService.setCurrentUser(response.data);
-                        $scope.message = "Profile update success";
-                    }else{
-                        $scope.message = "Unable to update profile";
-                    }
+            UserService
+                .updateUser(id, user)
+                .then(function (response) {
+                    console.log(response.data);
+                    $rootScope.currentUser.username = response.data.username;
+                    $rootScope.currentUser.password = response.data.password;
+                    $rootScope.currentUser.emails[0] = response.data.emails[0];
+                    $rootScope.currentUser.firstName = response.data.firstName;
+                    $rootScope.currentUser.lastName = response.data.lastName;
                 });
         }
     }

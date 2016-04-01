@@ -1,43 +1,48 @@
-<div ng-controller="RegisterController">
-    <h1>Register</h1>
-    <br>
-    <form class="form-horizontal">
-        <div class="form-group">
-            <div ng-show="message" class="alert alert-danger" role="alert">{{message}}</div>
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
 
-            <label class="col-sm-2 ">Username:</label>
-            <div class="col-sm-10">
-                <input type="text" ng-model="model.user.username" class="form-control"
-                       id="username" placeholder="Username">
-            </div>
-        </div>
-        <div class="form-group">
-            <label  class="col-sm-2 ">Password:</label>
-            <div class="col-sm-10">
-                <input type="model.user.password" ng-model="model.user.password" class="form-control"
-                       id="password" placeholder="Password">
-            </div>
-        </div>
-        <div class="form-group">
-            <label  class="col-sm-2 ">Verify Password:</label>
-            <div class="col-sm-10">
-                <input type="password" ng-model="model.user.password2" class="form-control"
-                       id="password2" placeholder="Verify Password">
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="col-sm-2 ">Email:</label>
-            <div class="col-sm-10">
-                <input type="email" ng-model="model.user.email" class="form-control"
-                       id="email" placeholder="Email">
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="col-sm-offset-2 col-sm-10 ">
-                <a type="submit" ng-click="model.register(model.user);"
-                   class="btn btn-default form-control">Register</a>
-            </div>
-        </div>
-    </form>
-</div>
+    <title>Register</title>
+
+</head>
+
+<body>
+
+            <h1 class="page-header">Register</h1>
+            <form class="form-horizontal">
+                <div class="form-group">
+                    <label for="inputName" class="col-sm-2 control-label">Username:</label>
+                    <div class="col-sm-7">
+                        <input type="text" class="form-control" id="inputName" placeholder="Username" ng-model="model.user.username">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputPassword3" class="col-sm-2 control-label">Password:</label>
+                    <div class="col-sm-7">
+                        <input type="password" class="form-control" id="inputPassword3" placeholder="Password" ng-model="model.user.password">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputPassword3" class="col-sm-2 control-label">Verify Password:</label>
+                    <div class="col-sm-7">
+                        <input type="password" class="form-control" id="inputPassword4" placeholder="Password" ng-model="model.user.verifyPassword">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputEmail3" class="col-sm-2 control-label">Email:</label>
+                    <div class="col-sm-7">
+                        <input type="email" class="form-control" id="inputEmail3" placeholder="Email" ng-model="model.user.email">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-7">
+                       <a href="#/profile" id="registerbtn" class="btn btn-default btn-primary btn-block" ng-click="model.register(model.user)">
+                           Register
+                       </a>
+                    </div>
+                </div>
+            </form>
+
+</body>
+</html>
