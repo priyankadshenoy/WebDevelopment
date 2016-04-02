@@ -3,7 +3,7 @@
         .module("FormBuilderApp")
         .controller("FieldController", fieldController);
 
-    function fieldController(FieldService, $routeParams, $rootScope) {
+    function fieldController(FieldService, $routeParams) {
         var vm = this;
         var formId = $routeParams.formId;
 
@@ -12,6 +12,7 @@
             vm.removeField = removeField;
             vm.edit = edit;
             vm.update = updateField;
+
             FieldService
                 .getFieldsForForm(formId)
                 .then(function(response) {
@@ -124,7 +125,7 @@
                 .deleteFieldFromForm(formId, fieldId)
                 .then(function(response) {
                     console.log(response.data);
-                   vm.fields.splice(index,1);
+                    vm.fields.splice(index,1);
                 });
         }
 
@@ -135,8 +136,14 @@
 
         function edit(field) {
 
-            $rootScope.isOptions = null;
-            $rootScope.isPlaceholder = null;
+            if(vm.isPlaceholder) {
+                delete vm.isPlaceholder;
+            }
+
+            if(vm.isOptions) {
+                delete vm.isOptions;
+            }
+
             var editField;
 
             if(!field.placeholder) {
@@ -156,18 +163,19 @@
                 }
             }
             else {
+
+                vm.isPlaceholder = true;
                 editField = {
                     _id : field._id,
                     label: field.label,
                     placeholder: field.placeholder
                 };
-                $rootScope.isPlaceholder = true;
             }
 
             vm.selectedField = editField;
 
-            if (field.options){
-                $rootScope.isOptions = true;
+            if (field.options.length !== 0) {
+                vm.isOptions = true;
                 vm.option = '';
                 for(var i = 0; i< field.options.length ; i++){
                     vm.option += field.options[i].label + ":" + field.options[i].value + "\n";
@@ -176,11 +184,31 @@
         }
 
         function updateField(field) {
-            var updatedField;
             if(!field.placeholder) {
+
+                if(!field.options) {
                     updatedField = {
                         label: field.label
                     };
+                }
+
+                else {
+                    var updatedField;
+                    var opts = vm.options;
+                    var op = [];
+                    var fieldOpts = opts.split("\n");
+                    for(var i in fieldOpts) {
+                        var lv = fieldOpts[i].split(":");
+                        op.push({
+                            label : lv[0],
+                            value : lv[1]
+                        });
+                    }
+                    updatedField = {
+                        label: field.label,
+                        options : op
+                    };
+                }
             }
             else {
                 updatedField = {
@@ -198,15 +226,18 @@
 
                     for(var i = 0 ; i < vm.fields.length ; i++)
                     {
-                        if(id == vm.fields[i]._id)
-                        {
+                        if(id == vm.fields[i]._id) {
                             vm.fields[i].label = field.label;
+
+                            if (vm.fields[i].options) {
+                                vm.fields[i].options = updatedField.options;
+                            }
+                            if (vm.fields[i].placeholder) {
+                                vm.fields[i].placeholder = field.placeholder;
+                            }
                         }
                     }
                 });
         }
-
-
     }
 })();
-
