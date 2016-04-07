@@ -1,6 +1,6 @@
 var mock = require("./user.mock.json");
 
-module.exports = function (app) {
+module.exports = function (uuid) {
 
     var api = {
         createUser: createUser,
@@ -22,9 +22,79 @@ module.exports = function (app) {
         stringreplace: stringreplace,
         stringsub: stringsub
 
-};
+    };
 
     return api;
+
+    function createUser(user) {
+        var user = {
+            username: user.username,
+            password: user.password,
+            _id: uuid.v1(),
+            firstName:user.firstName,
+            lastName:user.lastName,
+            email:user.email
+        };
+        mock.push(user);
+        return (user);
+    }
+
+    function findAllUsers() {
+        return (mock);
+    }
+
+    function findById(userid) {
+        for (var u in mock) {
+            if (mock[u]._id == userid) {
+                return mock[u];
+            }
+            else {
+                return null;
+            }
+        }
+    }
+
+    function findUserByUsername(username) {
+        for (var u in mock)
+        {
+            if (mock[u].username == username)
+            {
+                return mock[u];
+            }
+        }
+        return null;
+    }
+
+    function updateUser(userId, user) {
+        for (var u in mock) {
+            if (mock[u]._id == userId) {
+                flag = "true";
+                mock[u] = user;
+                return (mock[u]);
+            }
+        }
+        return (null);
+    }
+
+    function deleteUserById(userId) {
+        for (var u in mock) {
+            if (mock[u]._id == userId) {
+                mock.splice(u, 1);
+            }
+        }
+        return (mock);
+    }
+
+
+    function findUserByCredentials(credentials) {
+        for (var u in mock) {
+            if (mock[u].username == credentials.username &&
+                mock[u].password == credentials.password) {
+                return mock[u];
+            }
+        }
+        return null;
+    }
 
     function  stringsub(sslice){
         console.log(sslice.sub1+"user model server");
@@ -59,20 +129,20 @@ module.exports = function (app) {
             "Quis mundi accusam eu qui, pri dicta vivendo ea. His no nisl inani philosophia. " +
             "Vituperata definitionem qui an, libris eruditi omittantur et vis. Cu pro conceptam pertinacia, " +
             "ad sed iudico utamur dolorum, simul noluisse cu pro. Duo cu oblique diceret oportere.";
-            str = str.split(" ");
-            var t=0;
-            for(var i=0; i<str.length; i++)
+        str = str.split(" ");
+        var t=0;
+        for(var i=0; i<str.length; i++)
+        {
+            if( str[i]== ss)
             {
-                if( str[i]== ss)
-                {
-                    t++;
-                    break;
-                }
+                t++;
+                break;
             }
-            if(t>0)
-                return("Yaay we found a match");
-            else
-                return("Oh no! We cant find you");
+        }
+        if(t>0)
+            return("Yaay we found a match");
+        else
+            return("Oh no! We cant find you");
 
     }
 
@@ -90,18 +160,18 @@ module.exports = function (app) {
         return d1;
     }
 
-        function findDate(pick){
-            var t=pick+"";
-            var g= new Date(t);
-            g= g.getTime();
-            return(g);
+    function findDate(pick){
+        var t=pick+"";
+        var g= new Date(t);
+        g= g.getTime();
+        return(g);
         //return(pick.getTime());
         //return("hello");
     }
 
     function findDay(pick){
-          var test=pick+"";
-          return(test.substring(0,4));
+        var test=pick+"";
+        return(test.substring(0,4));
         //console.log(substring(pick, 1, 4));
         //var days = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
         //var test=days[pick.getDay()];
@@ -113,13 +183,13 @@ module.exports = function (app) {
 
         if (findBool1.operator1 == '>') {
             if (findBool1.num1 > findBool1.num2)
-               return("Oh yes " + findBool1.num1 + " is greater than " + findBool1.num2);
+                return("Oh yes " + findBool1.num1 + " is greater than " + findBool1.num2);
             else
                 return("No "+ findBool1.num1 + " is not greater than " + findBool1.num2);
         }
         if (findBool1.operator1 == '<') {
             if (findBool1.num1 < findBool1.num2)
-               return("Oh yes **" + findBool1.num1 + " is smaller than " + findBool1.num2);
+                return("Oh yes **" + findBool1.num1 + " is smaller than " + findBool1.num2);
             else
                 return("Nope "+ findBool1.num1 + " is not smaller than " + findBool1.num2);
         }
@@ -132,25 +202,25 @@ module.exports = function (app) {
         }
     }
 
-   function logical(findBool2){
-       if (findBool2.operator2 == '&'){
-           return(findBool2.num3 & findBool2.num4);
-          // console.log(findBool2.num3 & findBool2.num4);
-       }
-       if (findBool2.operator2 == '|'){
-           return(findBool2.num3 | findBool2.num4);
-       }
-       if (findBool2.operator2 == '^'){
-           return(findBool2.num3 ^ findBool2.num4);
-       }
-       if (findBool2.operator2 == '<<'){
-           return(findBool2.num3 << findBool2.num4);
-       }
-       if (findBool2.operator2 == '>>'){
-           return(findBool2.num3 >> findBool2.num4);
-       }
+    function logical(findBool2){
+        if (findBool2.operator2 == '&'){
+            return(findBool2.num3 & findBool2.num4);
+            // console.log(findBool2.num3 & findBool2.num4);
+        }
+        if (findBool2.operator2 == '|'){
+            return(findBool2.num3 | findBool2.num4);
+        }
+        if (findBool2.operator2 == '^'){
+            return(findBool2.num3 ^ findBool2.num4);
+        }
+        if (findBool2.operator2 == '<<'){
+            return(findBool2.num3 << findBool2.num4);
+        }
+        if (findBool2.operator2 == '>>'){
+            return(findBool2.num3 >> findBool2.num4);
+        }
 
-   }
+    }
 
     function find(findData){
         //console.log("In findDate");
@@ -175,75 +245,7 @@ module.exports = function (app) {
             var tt=Number(findData.operator1)/ Number(findData.operator2);
             tt=Number(tt.toFixed(2));
             return tt;
-    }
-    }
-
-
-    function createUser(user) {
-        var user = {
-            username: user.username,
-            password: user.password,
-            _id: (new Date).getTime(),
-            email:user.email
-        };
-        mock.push(user);
-        return (user);
-    }
-
-    function findAllUsers() {
-        return (mock);
-    }
-
-    function findById(userid) {
-        for (var u in mock) {
-            if (mock[u]._id === userid) {
-                return mock[u];
-            }
-            else {
-                return null;
-            }
         }
     }
 
-    function findUserByUsername(username) {
-        for (var u in mock) {
-            if (mock[u].username === username) {
-                return mock[u];
-            }
-            else {
-                return null;
-            }
-        }
-    }
-
-    function updateUser(userId, user) {
-        for (var u in mock) {
-            if (mock[u]._id === userId) {
-                flag = "true";
-                mock[u] = user;
-                return (mock[u]);
-            }
-        }
-        return (null);
-    }
-
-    function deleteUserById(userId) {
-        for (var u in mock) {
-            if (mock[u]._id === userId) {
-                delete mock[u];
-            }
-        }
-        return (mock);
-    }
-
-
-    function findUserByCredentials(credentials) {
-        for (var u in mock) {
-            if (mock[u].username === credentials.username &&
-                mock[u].password === credentials.password) {
-                return mock[u];
-            }
-        }
-        return null;
-    }
 };

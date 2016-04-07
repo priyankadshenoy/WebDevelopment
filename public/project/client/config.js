@@ -7,16 +7,27 @@
     function Configure($routeProvider) {
         $routeProvider
 
-            .when("/login", {
-                templateUrl: "views/user/login.view.html",
-                controller: "LoginController",
-                controllerAs:"model"
-            })
-
             .when("/home", {
                 templateUrl: "views/home/home.view.html"
                 //controller: "LoginController",
                 //controllerAs:"model"
+            })
+            .when("/signup", {
+                templateUrl: "views/users/signup.view.html",
+                controller:"SignUpController",
+                controllerAs: "model"
+            })
+
+            .when("/profile", {
+                templateUrl: "views/users/profile.view.html",
+                controller:"ProfileController",
+                controllerAs: "model"
+            })
+
+            .when("/login", {
+                templateUrl: "views/users/login.view.html",
+                controller:"LoginController",
+                controllerAs: "model"
             })
 
             .when("/newapp", {
@@ -77,18 +88,30 @@
                 controllerAs:"model"
             })
 
-            .when('/profile', {
-                templateUrl: "views/user/profile.view.html",
-                controller: "ProfileController",
+            .when("/scripts" , {
+                templateUrl:"views/scripts/scripts.view.html",
+                controller:"ScriptController",
                 controllerAs: "model"
             })
 
-
-            .when("/register", {
-                templateUrl: "views/user/register.view.html",
-                controller:"RegisterController",
-                controllerAs:"model"
+            .when("/admin" , {
+                templateUrl:"views/admin/admin.view.html",
+                controller:"adminController",
+                controllerAs: "model"
             })
+
+            .when("/PageDetails" , {
+                templateUrl:"views/scripts/scriptsDetails.view.html",
+                controller:"ScriptDetailsController",
+                controllerAs: "model"
+            })
+
+            .when("/page/:pageId/fields",{
+                templateUrl: "views/scripts/scriptsDetails.view.html",
+                controller: "ScriptDetailsController",
+                controllerAs: "model"
+            })
+
 
 
             .when("/header", {

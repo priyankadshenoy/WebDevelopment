@@ -3,6 +3,7 @@ var bodyParser = require('body-parser');
 var multer = require('multer');
 var app = express();
 var mongoose = require('mongoose');
+var uuid = require('node-uuid');
 var connectionString = 'mongodb://127.0.0.1:27017/formmaker';
 
 if(process.env.OPENSHIFT_MONGODB_DB_PASSWORD) {
@@ -25,5 +26,7 @@ app.get('/hello', function(req, res){
     res.send('hello world');
 });
 require("./public/assignment/server/app.js")(app, db , mongoose);
-require("./public/project/server/app.js")(app);
+require("./public/project/server/app.js")(app,uuid);
+//require("./public/experiments/test1/server/app.js")(app);
+//require("./public/experiments/test1/server/app.js")(app,uuid);
 app.listen(port, ipaddress);

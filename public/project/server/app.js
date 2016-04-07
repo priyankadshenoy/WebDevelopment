@@ -1,9 +1,10 @@
-module.exports = function(app) {
+module.exports = function(app,uuid){
+    var userModel = require("./models/user.model.js")(uuid);
+    var pageModel = require("./models/pages.model.js")(uuid);
+    var fieldModel = require("./models/fields.model.js")(uuid,pageModel);
 
-    var userModel = require('./models/user.model.js')();
-   // var formModel = require('./models/form.model.js')();
+    var userService = require("./services/user.service.server.js")(app,userModel);
+    var formService = require("./services/pages.service.server.js")(app,pageModel);
+    var fieldService = require("./services/fields.service.server.js")(app,pageModel,fieldModel);
 
-    var userService = require('./services/user.service.server.js')(app, userModel);
-  //  var formService = require('./services/form.service.server.js')(app, formModel);
-  //  var fieldService = require('./services/field.service.server.js')(app, formModel);
 };

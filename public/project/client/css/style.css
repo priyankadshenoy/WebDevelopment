@@ -85,3 +85,29 @@ body {
         font-size: 16px;
     }
 }
+
+.text-nowrap{
+    white-space: nowrap;
+}
+
+.check-sidebar
+{
+    display: none;
+}
+
+@media (max-width: 768px)
+{
+    .check-sidebar {
+        display: block;
+    }
+}
+
+select {
+    width: 100%;
+    padding: 8px 18px;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
