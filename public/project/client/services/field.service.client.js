@@ -10,10 +10,15 @@
             findField:findField,
             findFieldByPage:findFieldByPage,
             deleteField:deleteField,
-            updateField:updateField
+            updateField:updateField,
+            publishField :publishField
         };
 
         return api;
+
+        function publishField(){
+            return $http.post("/api/project/page");
+        }
 
         function createField (pageId, field) {
             return $http.post("/api/project/page/" +pageId+ "/field", field);

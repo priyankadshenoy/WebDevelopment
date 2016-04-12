@@ -5,21 +5,40 @@ module.exports = function(uuid,pageModel){
         deleteField:deleteField,
         updateField:updateField,
         findField:findField,
-        findFieldByPageId:findFieldByPageId
+        findFieldByPageId:findFieldByPageId,
+        publishField :publishField
     };
-
+    var page;
+    var fields;
+    var test=new Array();
     return api;
+
+
 
     function createField(pageId,field){
         field._id = uuid.v1();
-        var page = pageModel.findPageById(pageId);
+        page = pageModel.findPageById(pageId);
         page.fields.push(field);
-        console.log("server" +page.fields);
+        //console.log("hello");
+        for(var i=0; i<page.fields.length; i++)
+        if(!(page.fields[i].name === undefined))
+        console.log("Helo"+ page.fields[i].name);
+        //console.log("server" +page.fields);
 ;    }
 
+    function publishField(){
+        console.log("j"+page.fields[1].name);
+        for(var j=0 ; j < page.fields.length; j++)
+            if(!(page.fields[j].name === undefined))
+            {
+                test[j]= page.fields[j].name;
+                console.log("god please"+ test[j]);
+            }
+    }
+
     function  deleteField(pageId,fieldId){
-        var page = pageModel.findPageById(pageId);
-        var fields = page.fields;
+        page = pageModel.findPageById(pageId);
+        fields = page.fields;
         for(var u in fields){
             if(fields[u]._id == fieldId){
                 fields.splice(u,1);
@@ -28,8 +47,8 @@ module.exports = function(uuid,pageModel){
     }
 
     function  updateField(pageId,fieldId,field){
-        var page = pageModel.findPageById(pageId);
-        var fields= page.fields;
+        page = pageModel.findPageById(pageId);
+        fields= page.fields;
         for(var u in fields){
             if(fields[u]._id ==fieldId){
                 fields[u] = field;
@@ -38,8 +57,8 @@ module.exports = function(uuid,pageModel){
     }
 
     function findField(pageId,fieldId){
-        var page = pageModel.findPageById(pageId);
-        var fields = page.fields;
+        page = pageModel.findPageById(pageId);
+        fields = page.fields;
         for(var u in fields){
             if(field[u]._id == fieldId){
                 return fields[u];
@@ -48,8 +67,9 @@ module.exports = function(uuid,pageModel){
     }
 
     function findFieldByPageId(pageId){
-        var page = pageModel.findPageById(pageId);
-        console.log(page.fields);
+        page = pageModel.findPageById(pageId);
+       //
+        // console.log(page.fields);
         return page.fields;
 
     }

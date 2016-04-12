@@ -15,10 +15,18 @@
         vm.addField=addField;
         vm.repeatField = repeatField;
         $scope.updatePage = updatePage;
+        vm.addNewChoice= addNewChoice;
+        vm.findSolution =findSolution;
+        vm.publish= publish;
 
 
 
         var currentUser =$rootScope.currentUser;
+
+        function publish(){
+            FieldService.publishField()
+                .then(console.log("tata"));
+        }
 
 
         if($routeParams.pageId){
@@ -51,7 +59,7 @@
             FieldService.findFieldByPage(pageId)
                 .then(function(response){
                     vm.fields = response.data;
-                    console.log("init fields" +vm.fields);
+                    //console.log("init fields" +vm.fields);
                 });
 
             PageService.findPageByPageId(pageId)
@@ -131,11 +139,12 @@
                     break;
 
                 case "TEXT":
-                    field = {"_id": null, "label": "New Text Field", "type": "TEXT", "placeholder": "New Field"};
+                    field = {"_id": null, "label": "New Text Field", "type": "TEXT",
+                        "placeholder": "New Field"  };
                     break;
 
                 case "TEXTAREA":
-                    field = {"_id": null, "label": "New Text Field", "type": "TEXTAREA", "placeholder": "New Field"};
+                    field = {"_id": null, "label": "New Text Area Field", "type": "TEXTAREA", "placeholder": "New Field"};
                     break;
 
                 case "DATE":
@@ -227,17 +236,13 @@
 
         $scope.choices = [{id: 'choice1'}];
 
-        $scope.addNewChoice = function() {
+        function addNewChoice() {
             var newItemNo = $scope.choices.length;
             $scope.choices.push({'id':'choice'+newItemNo});
-           // var test= $scope.choices;
-           // for(var i=0;i<newItemNo; i++)
-            //console.log($scope.choices[i].name);
-           //findSolution()
 
-        };
+        }
 
-        $scope.findSolution = function() {
+        function findSolution() {
             var x= $scope.choices;
             var result=0;
             if(x[1].name == "*")

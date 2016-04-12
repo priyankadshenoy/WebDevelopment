@@ -4,7 +4,12 @@ module.exports = function(app,pageModel,fieldModel) {
     app.delete("/api/project/page/:pageId/field/:fieldId", deleteFieldById);
     app.post("/api/project/page/:pageId/field", createField);
     app.put("/api/project/page/:pageId/field/:fieldId", updateFieldById);
+    app.post("/api/project/page",publishField);
 
+    function publishField(req,res){
+        //var pageId = req.params.pageId;
+        res.json(fieldModel.publishField());
+    }
 
     function findPageFields(req,res){
         var pageId = req.params.pageId;
