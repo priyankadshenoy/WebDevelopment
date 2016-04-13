@@ -23,7 +23,7 @@
                 .then(function(response){
                     if(response.data){
                         UserService.setCurrentUser(response.data);
-                        $location.url("/newapp");
+                        $location.url("/home");
                     }else{
                         vm.message = "Username or password doesnot match";
                     }

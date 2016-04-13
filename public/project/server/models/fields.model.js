@@ -19,22 +19,46 @@ module.exports = function(uuid,pageModel){
         field._id = uuid.v1();
         page = pageModel.findPageById(pageId);
         page.fields.push(field);
-        //console.log("hello");
-        for(var i=0; i<page.fields.length; i++)
-        if(!(page.fields[i].name === undefined))
-        console.log("Helo"+ page.fields[i].name);
-        //console.log("server" +page.fields);
-;    }
+    }
 
     function publishField(){
-        console.log("j"+page.fields[1].name);
-        for(var j=0 ; j < page.fields.length; j++)
-            if(!(page.fields[j].name === undefined))
-            {
-                test[j]= page.fields[j].name;
-                console.log("god please"+ test[j]);
+        var result=0;
+
+        for(var k=0 ; k < page.fields.length; k++) {
+            if (!(page.fields[k].name === undefined)) {
+                test[k] = page.fields[k].name;
+                //console.log(test[j] + "  ");
             }
-    }
+        }
+            for (var j = 1; j < test.length; j++) {
+                if (j == 2 && test[1] == "+")
+                    result = parseFloat(test[0]) + parseFloat(test[2]);
+                else if (j == 2 && test[2] == "*") {
+                    console.log("in");
+                    result = parseFloat(test[1]) * parseFloat(test[3]);
+                    console.log("in result"+ result);
+                }
+                else if (j == 2 && test[1] == "-")
+                    result = parseFloat(test[0]) - parseFloat(test[2]);
+
+                else if (j == 2 && test[1] == "/")
+                    result = parseFloat(test[0]) / parseFloat(test[2]);
+
+                else if (j > 2 && test[j] == "*")
+                    result = result * parseFloat(test[j + 1]);
+
+                else if (j > 2 && test[j] == "+")
+                    result = result + parseFloat(test[j + 1]);
+
+                else if (j > 2 && test[j] == "-")
+                    result = result - parseFloat(test[j + 1]);
+
+                else if (j > 2 && test[j] == "/")
+                    result = result / parseFloat(test[j + 1]);
+            }
+            console.log(result + "result");
+        }
+
 
     function  deleteField(pageId,fieldId){
         page = pageModel.findPageById(pageId);

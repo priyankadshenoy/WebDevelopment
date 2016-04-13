@@ -8,10 +8,17 @@
         $routeProvider
 
             .when("/home", {
-                templateUrl: "views/home/home.view.html"
-                //controller: "LoginController",
-                //controllerAs:"model"
+                templateUrl: "views/home/home.view.html",
+                controller: "HomeController",
+                controllerAs:"model"
             })
+
+            .when("/findScripts", {
+                templateUrl: "views/home/findScripts.view.html",
+                controller: "HomeController",
+                controllerAs:"model"
+            })
+
             .when("/signup", {
                 templateUrl: "views/users/signup.view.html",
                 controller:"SignUpController",
