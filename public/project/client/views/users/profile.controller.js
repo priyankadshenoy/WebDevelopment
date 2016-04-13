@@ -1,40 +1,43 @@
 (function() {
     "use strict";
     angular.module("ProjectApp")
-           .controller("ProfileController", ProfileController);
+        .controller("ProfileController", ProfileController);
 
     function ProfileController(UserService,$rootScope) {
         var vm = this;
         vm.update = update;
-        var currentUser = $rootScope.currentUser;
-        vm.username= currentUser.username;
-        vm.password= currentUser.password;
-        vm.firstName = currentUser.firstName;
-        vm.lastName = currentUser.lastName;
-        vm.email = currentUser.email;
+        var loggedUser = $rootScope.currentUser;
+        vm.username= loggedUser.username;
+        vm.password= loggedUser.password;
+        vm.firstName = loggedUser.firstName;
+        vm.lastName = loggedUser.lastName;
+        vm.emails = loggedUser.emails.join(",");
 
-        function update(username,password,firstName,lastName,email) {
+        function init(){
+
+        }init();
+
+        function update(username,password,firstName,lastName,emails) {
             vm.message = null;
-            var id = currentUser._id;
+            var id = loggedUser._id;
             var userDetails ={
-                "_id":id,
                 "username":username,
                 "password":password,
                 "firstName":firstName,
                 "lastName":lastName,
-                "email":email
+                "role":loggedUser.role,
+                "emails":emails.split(",")
             };
 
             UserService.updateUser(id,userDetails)
-                .then(function(response){
-                    if(response.data)
-                    {
-                        UserService.setCurrentUser(response.data);
-                        vm.message = "Your Profile has been updated!!!";
-                    }else{
-                        vm.message = "Sorry! Please enter your details again!!!";
+                .then(function(user){
+                        $rootScope.currentUser = user.data;
+                        vm.message = "Profile Updated";
+                    },
+                    function(err){
+                        vm.message = "Invalid Data";
                     }
-                });
+                );
         }
     }
 })();

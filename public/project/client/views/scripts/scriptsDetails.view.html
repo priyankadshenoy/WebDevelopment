@@ -21,7 +21,7 @@
                 -->
 
                 <div class="form-horizontal">
-                    <div jga-sortable jga-axis = 'y'>
+                    <div ng-model="model.fields" jga-sortable jga-sortable-callback = "model.sortField(start,end)">
                         <div ng-repeat="field in model.fields track by $index">
                             <div class="input-group">
                                 <h1 ng-if="field.type == 'HEADER'">{{field.label}}</h1>
@@ -47,7 +47,7 @@
                                 </div>
                                 <div class="input-group-btn">
                                     <button ng-click ="model.editField(field)"       class="btn btn-warning" data-toggle="modal" data-target="#editField"><span class="glyphicon glyphicon-pencil"></span></button>
-                                    <button ng-click ="model.repeatField(field)"     class="btn btn-success"><span class="glyphicon glyphicon-plus"></span></button>
+                                    <button ng-click ="model.cloneField(field)"     class="btn btn-success"><span class="glyphicon glyphicon-plus"></span></button>
                                     <button ng-click ="model.deleteField(field._id)" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></button>
                                     <a class="btn btn-info"><span class="glyphicon glyphicon-menu-hamburger"></span></a>
                                 </div>
@@ -68,34 +68,37 @@
                             </div>
 
                             <div data-ng-init="text='TEXT';">
-                                <button data-ng-attr-id="text" class="btn btn-block" data-ng-click="model.addField(text)">Text</button>
+                                <button data-ng-attr-id="text" class="btn btn-block"
+                                        data-ng-click="model.addField(text)">Text</button>
                             </div>
 
                             <div data-ng-init="button='BUTTON';">
-                                <button data-ng-attr-id="button" class="btn btn-block" data-ng-click="model.addField(button)">Button</button>
+                                <button data-ng-attr-id="button" class="btn btn-block"
+                                        data-ng-click="model.addField(button)">Button</button>
                             </div>
 
                             <div data-ng-init="textArea='TEXTAREA';">
-                                <button data-ng-attr-id="textArea" class="btn btn-block" data-ng-click="model.addField(textArea)">Text Area</button>
+                                <button data-ng-attr-id="textArea" class="btn btn-block"
+                                        data-ng-click="model.addField(textArea)">Text Area</button>
                             </div>
 
                             <div data-ng-init="paragraph='PARAGRAPH';">
-                                <button data-ng-attr-id="paragraph" class="btn btn-block" data-ng-click="model.addField(paragraph)">Paragraph</button>
+                                <button data-ng-attr-id="paragraph" class="btn btn-block"
+                                        data-ng-click="model.addField(paragraph)">Paragraph</button>
                             </div>
 
                             <div data-ng-init="arithmetic='ARITHMETIC';">
-                                <button data-ng-attr-id="arithmetic" class="btn btn-block" data-ng-click="model.addField(arithmetic)">Arithmetic</button>
+                                <button data-ng-attr-id="arithmetic" class="btn btn-block"
+                                        data-ng-click="model.addField(arithmetic)">Arithmetic</button>
                             </div>
                             <div data-ng-init="string='STRING';">
-                                <button data-ng-attr-id="string" class="btn btn-block" data-ng-click="model.addField(string)">String</button>
-                            </div>
-                            <div data-ng-init="date='DATE';">
-                                <button data-ng-attr-id="date" class="btn btn-block" data-ng-click="model.addField(date)">Date</button>
+                                <button data-ng-attr-id="string" class="btn btn-block"
+                                        data-ng-click="model.addField(string)">String</button>
                             </div>
                             <div data-ng-init="boolean='BOOLEAN';">
-                                <button data-ng-attr-id="boolean" class="btn btn-block" data-ng-click="model.addField(boolean)">Boolean</button>
+                                <button data-ng-attr-id="boolean" class="btn btn-block"
+                                        data-ng-click="model.addField(boolean)">Boolean</button>
                             </div>
-
 
                         </ul>
                     </div>

@@ -1,4 +1,4 @@
 (function(){
     angular
-        .module("ProjectApp", ["ngRoute","jgaSortable","ui.bootstrap"]);
+        .module("ProjectApp", ["ngRoute","jgaDirectives","ui.bootstrap"]);
 })();

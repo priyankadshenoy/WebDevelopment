@@ -14,25 +14,24 @@
             findPageByPageId:findPageByPageId
         };
         return model;
-
         function createPageForUser(page){
-            return $http.post("/api/project/scripts" ,page);
+            return $http.post("/api/project/pages" ,page);
         }
 
         function findAllPages(){
-            return $http.get("/api/project/scripts");
+            return $http.get("/api/project/pages");
         }
 
         function deletePageById(pageId){
-            return $http.delete("/api/project/scripts/" +pageId);
+            return $http.delete("/api/project/pages/" +pageId);
         }
 
         function updatePageById(pageId, newPage){
-            return $http.put("/api/project/scripts/" +pageId ,newPage);
+            return $http.put("/api/project/pages/" +pageId ,newPage);
         }
 
         function findPageById(userId){
-            return $http.get("/api/project/scripts/" +userId);
+            return $http.get("/api/project/pages/" +userId);
         }
 
         function findPageByPageId(pageId){

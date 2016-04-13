@@ -1,143 +1,216 @@
+var passport      = require('passport');
+var LocalStrategy = require('passport-local').Strategy;
+
 module.exports = function(app,userModel){
-    app.get("/api/project/user/:username/:password",findUserByCredentials);
-    app.post("/api/project/user", createUser);
-    app.get("/api/project/user",allUsers);
+
+    var auth = authorized;
+    app.post('/api/project/login', passport.authenticate('local'), login);
+    app.post('/api/project/logout',logout);
+    app.get('/api/project/loggedin',loggedin);
+    app.post('/api/project/register',register);
+    app.post("/api/project/user",auth,createUser);
+    app.get("/api/project/user",auth,allUsers);
     app.get("/api/project/user/:userId",findById);
-    app.get("/api/project/username/:username",findUserByUsername);
-    app.put("/api/project/user/:userId",updateUser);
-    app.delete("/api/project/user/:userId",deleteUserById);
-    app.get("/api/project/user/:operator1/:operator2/:operator",find);
-    app.get("/api/project/logical/:num3/:num4/:operator2",logical);
-    app.get("/api/project/comparison/:num1/:num2/:operator1", comparison);
-    app.get("/api/project/findDay/:pick",findDay);
-    app.get("/api/project/findDate/:pick",findDate);
-    app.get("/api/project/prev/:pre",findDatePre);
-    app.get("/api/project/post/:post",findDatePost);
-    app.get("/api/project/search/:ssearch",stringSearch);
-    app.get("/api/project/concat/:con1/:con2",stringconcat);
-    app.get("/api/project/replace/:replacee/:replacement",stringreplace);
-    app.get("/api/project/slice/:sub1/:sub2",stringsub);
+    app.put("/api/project/user/:userId",auth,updateUser);
+    app.delete("/api/project/user/:userId",auth,deleteUserById);
 
 
-    function createUser(req,res){
-        var user=req.body;
-        res.json(userModel.createUser(user));
+    passport.use(new LocalStrategy(localStrategy));
+    passport.serializeUser(serializeUser);
+    passport.deserializeUser(deserializeUser);
+
+
+    function localStrategy(username, password, done) {
+        userModel
+            .findUserByCredentials({username: username, password: password})
+            .then(
+                function(user) {
+                    if (!user)
+                    {
+                        return done(null, false);
+                    }
+                    return done(null, user);
+                },
+                function(err) {
+                    if (err) { return done(err); }
+                }
+            );
+    }
+    function serializeUser(user, done) {
+        done(null, user);
     }
 
+    function deserializeUser(user, done) {
+        userModel
+            .findById(user._id)
+            .then(
+                function(user){
+                    done(null, user);
+                },
+                function(err){
+                    done(err, null);
+                }
+            );
+    }
+
+    function login(req, res) {
+        var user = req.user;
+        res.json(user);
+    }
+
+    function loggedin(req, res) {
+        //console.log(req.isAuthenticated() ? req.user : '0');
+        res.send(req.isAuthenticated() ? req.user : '0');
+    }
+
+    function logout(req, res) {
+        req.logOut();
+        res.send(200);
+    }
+
+    function isAdmin(user) {
+        if(user.role == "admin") {
+            return true
+        }
+        return false;
+    }
+
+    function authorized (req, res, next) {
+        if (!req.isAuthenticated()) {
+            res.send(401);
+        } else {
+            next();
+        }
+    }
+
+    function createUser(req,res){
+        var newUser=req.body;
+
+        userModel
+            .findUserByUsername(newUser.username)
+            .then(function (user) {
+                    if (user) {
+                        res.json(null);
+                    } else {
+                        return userModel.createUser(newUser);
+                    }
+                },
+                function (err) {
+                    res.status(400).send(err);
+                }
+            )
+            .then(
+                function (user) {
+                    if (user) {
+                        res.json(user);
+                    }else{
+                        res.json(null);
+                    }},
+                function (err) {
+                    res.status(400).send(err);
+                }
+            );
+    }
+
+    function register(req, res) {
+        var newUser = req.body;
+        if (newUser.username == "admin") {
+            newUser.role = "admin";
+        }
+        else {
+            newUser.role = "user";
+        }
+
+        userModel
+            .findUserByUsername(newUser.username)
+            .then(
+                function(user){
+                    if(user) {
+                        res.json(null);
+                    } else {
+                        return userModel.createUser(newUser);
+                    }
+                },
+                function(err){
+                    res.status(400).send(err);
+                }
+            )
+            .then(
+                function(user){
+                    if(user){
+                        req.login(user, function(err) {
+                            if(err) {
+                                res.status(400).send(err);
+                            } else {
+                                res.json(user);
+                            }
+                        });
+                    }
+                },
+                function(err){
+                    res.status(400).send(err);
+                }
+            );
+    }
+
+
     function allUsers(req,res){
-        res.json(userModel.findAllUsers());
+        if(isAdmin(req.user)){
+            userModel.findAllUsers()
+                .then(function (users) {
+                        res.json(users);
+                    },
+                    function (err) {
+                        res.status(400).send(err);
+                    });
+        }else{
+            res.status(403);
+        }
     }
 
     function findById(req,res){
         var userId =req.params.userId;
-        res.json(userModel.findById(userId));
+        userModel.findById(userId)
+            .then(function(user){
+                    res.json(err);
+                },
+                function (err) {
+                    res.status(400).send(err);
+                });
     }
 
-    function findUserByUsername(req,res){
-        var username = req.params.username;
-        res.json(userModel.findUserByUsername(username));
-    }
-
-    function findUserByCredentials(req,res){
-        var credentials = {
-            username:req.params.username,
-            password:req.params.password
-        };
-        res.json(userModel.findUserByCredentials(credentials));
-    }
 
     function updateUser(req,res){
         var userId =req.params.userId;
-        var user = req.body;
-        res.json(userModel.updateUser(userId,user));
+        var newUser = req.body;
+        if(!isAdmin(req.user)) {
+            delete newUser.role;
+        }
+
+        userModel.updateUser(userId,newUser)
+            .then(function (user) {
+                    res.json(user);
+                },
+                function(err){
+                    res.status(400).send(err);
+                });
     }
 
-    function deleteUserById(req,res){
-        var userId =req.params.userId;
-        res.json(userModel.deleteUserById(userId));
+    function deleteUserById(req,res) {
+        if (isAdmin(req.user)) {
+            var userId = req.params.userId;
+            userModel.deleteUserById(userId)
+                .then(function (stats) {
+                        res.send(200);
+                    },
+                    function (err) {
+                        res.status(400).send(err);
+                    })
+                .then(function (users) {
+                    res.json(users);
+                }, function (err) {
+                    res.status.send(err);
+                });
+        }
     }
-
-    function stringsub(req, res){
-        var sslice={
-            sub1: req.params.sub1,
-            sub2: req.params.sub2
-        };
-        console.log(sslice+"service server");
-        res.json(userModel.stringsub(sslice));
-    }
-    function stringreplace(req, res){
-        var strrep={
-            replacee: req.params.replacee,
-            replacement: req.params.replacement
-        };
-        res.json(userModel.stringreplace(strrep));
-    }
-
-    function stringconcat(req, res){
-        var strcon={
-            con1: req.params.con1,
-            con2: req.params.con2
-        };
-        res.json(userModel.stringconcat(strcon));
-    }
-
-
-    function stringSearch(req, res){
-        var ssearch=req.params.ssearch;
-        console.log(ssearch+"service server");
-        res.json(userModel.stringsearch(ssearch));
-    }
-
-    function findDatePre(req, res){
-        var pre=req.params.pre;
-        res.json(userModel.findDatePre(pre));
-    }
-    function findDatePost(req, res){
-        var post=req.params.post;
-        res.json(userModel.findDatePost(post));
-    }
-
-    function findDate(req, res){
-        var pick =req.params.pick;
-        res.json(userModel.findDate(pick));
-    }
-
-    function  findDay(req, res){
-        var pick =req.params.pick;
-        res.json(userModel.findDay(pick));
-    }
-
-    function logical(req, res){
-        var findBool2={
-            num3:req.params.num3,
-            num4:req.params.num4,
-            operator2:req.params.operator2
-        };
-        console.log(req.params.num3+" "+req.params.num4+" "+req.params.operator2);
-        res.json(userModel.logical(findBool2));
-    }
-
-    function comparison(req, res){
-        // console.log(req.params.num1);
-        // console.log(req.params.num2);
-        // console.log(req.params.operator1);
-        var findBool1={
-            num1:req.params.num1,
-            num2:req.params.num2,
-            operator1:req.params.operator1
-        };
-        res.json(userModel.comparison(findBool1));
-    }
-
-    function find(req, res){
-        //console.log("in service");
-        var findData={
-            operator1:req.params.operator1,
-            operator2:req.params.operator2,
-            operator:req.params.operator
-        };
-
-        res.json(userModel.find(findData));
-    }
-
 };

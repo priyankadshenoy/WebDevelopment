@@ -1,40 +1,70 @@
 module.exports = function(app,pageModel){
-    app.post("/api/project/scripts", createPageForUser);
-    app.get("/api/project/scripts",findAllPages);
-    app.get("/api/project/scripts/:userId",findPagesById);
-    app.put("/api/project/scripts/:pageId",updatePageById);
-    app.delete("/api/project/scripts/:pageId",deletePageById);
-    app.get("/api/project/page/:pageId",findPagesByPageId);
+    app.post("/api/project/pages", createPageForUser);
+    app.get("/api/project/pages",findAllPages);
+    app.get("/api/project/pages/:userId",findPagesByUserId);
+    app.put("/api/project/pages/:pageId",updatePageById);
+    app.delete("/api/project/pages/:pageId",deletePageById);
+    app.get("/api/project/page/:pageId",findPageByPageId);
 
-    function findPagesByPageId(req,res){
+    function findPageByPageId(req,res){
         var pageId = req.params.pageId;
-        res.json(pageModel.findPageById(pageId));
+        pageModel.findPageById(pageId)
+            .then(function(page){
+                res.json(page);
+            },function(err){
+                res.status(400).send(err);
+            });
 
     }
 
     function createPageForUser(req,res){
         var page=req.body;
-        res.json(pageModel.createPageForUser(page));
+        pageModel.createPageForUser(page)
+            .then(function(page){
+                res.json(page);
+            },function(err){
+                res.status(400).send(err);
+            });
     }
 
     function findAllPages(req,res){
-        res.json(pageModel.findAllPages());
+        pageModel.findAllPages()
+            .then(function(pages){
+                res.json(pages);
+            },function(err){
+                res.status(400).send(err);
+            });
     }
 
-    function findPagesById(req,res){
+    function findPagesByUserId(req,res){
         var userId =req.params.userId;
-        res.json(pageModel.findPagesForUser(userId));
+        pageModel.findPagesForUser(userId)
+            .then(function(pages){
+                res.json(pages);
+            },function(err){
+                res.status(400).send(err);
+            });
     }
 
     function updatePageById(req,res){
         var pageId =req.params.pageId;
         var page = req.body;
-        res.json(pageModel.updatePageById(pageId,page));
+        pageModel.updatePageById(pageId,page)
+            .then(function(page){
+                res.json(page)
+            },function(err){
+                res.status(400).send(err);
+            });
     }
 
     function deletePageById(req,res){
         var pageId =req.params.pageId;
-        res.json(pageModel.deletePageById(pageId));
+        pageModel.deletePageById(pageId)
+            .then(function(stats){
+                res.send(200);
+            },function(err){
+                res.status(400).send(err);
+            });
     }
 
 };

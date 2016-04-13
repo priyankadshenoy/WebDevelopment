@@ -1,15 +1,27 @@
 (function(){
     angular
         .module("ProjectApp")
-        .controller("HeaderController", headerController);
+        .controller("HeaderController",HeaderController);
 
-    function headerController($location, $scope, UserService) {
-        $scope.$location = $location;
-        $scope.logout = logout;
+    function HeaderController(UserService,$rootScope,$location) {
+        var vm = this;
+        vm.logout = logout;
+
+        function init() {
+
+        }
+
+        init();
 
         function logout() {
-            UserService.setCurrentUser(null);
-            $location.url("/home");
+            UserService.logout()
+                .then(function () {
+                    $rootScope.currentUser = null;
+                    $location.url('/login');
+                }, function (err) {
+                    console.log(err);
+                });
+
         }
     }
 })();
