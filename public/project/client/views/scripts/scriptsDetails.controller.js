@@ -4,6 +4,7 @@
     angular.module("ProjectApp")
         .controller("ScriptDetailsController",ScriptDetailsController);
 
+
     function ScriptDetailsController(FieldService,PageService,$routeParams,$rootScope,$scope) {
         var vm = this;
 
@@ -21,13 +22,113 @@
         vm.publish = publish;
         vm.sortField = sortField;
 
+        var arr= new Array();
+        $scope.result;
+
 
         var currentUser = $rootScope.currentUser;
 
         function publish() {
-            console.log(vm.fields[1].date);
-            FieldService.publishField()
-                .then(console.log("tata"));
+
+            for (var l = 0; l < vm.fields.length; l++) {
+                if (!(vm.fields[l].name === undefined))
+                    arr[l] = vm.fields[l].name;
+
+                else if (!(vm.fields[l].option === undefined))
+                    arr[l] = vm.fields[l].option;
+
+                else if (!(vm.fields[l].area === undefined))
+                    arr[l] = vm.fields[l].area;
+
+                else if (!(vm.fields[l].date === undefined))
+                    arr[l] = vm.fields[l].date;
+                else
+                    console.log($scope.result = "Invalid Data");
+            }
+            for (var m = 0; m < arr.length; m++) {
+                if (arr[m] == "Multiply" && m == 1)
+                    $scope.result = parseFloat(arr[m - 1]) * parseFloat(arr[m + 1]);
+                else if (arr[m] == "Add" && m == 1)
+                    $scope.result = parseFloat(arr[m - 1]) + parseFloat(arr[m + 1]);
+                else if (arr[m] == "Subtract" && m == 1)
+                    $scope.result = parseFloat(arr[m - 1]) - parseFloat(arr[m + 1]);
+                else if (arr[m] == "Divide" && m == 1)
+                    $scope.result = parseFloat(arr[m - 1]) / parseFloat(arr[m + 1]);
+                else if (arr[m] == "Divide")
+                    $scope.result = $scope.result / parseFloat(arr[m + 1]);
+                else if (arr[m] == "Multiply")
+                    $scope.result = $scope.result * parseFloat(arr[m + 1]);
+                else if (arr[m] == "Add")
+                    $scope.result = $scope.result + parseFloat(arr[m + 1]);
+                else if (arr[m] == "Subtract")
+                    $scope.result = $scope.result - parseFloat(arr[m + 1]);
+                else if (arr[m] == "Slice") {
+                    var ar = arr[m - 1];
+                    var num1 = arr[m + 1];
+                    var num2 = arr[m + 2];
+                    $scope.result = ar.substr(parseInt(num1), parseInt(num2));
+
+                }
+                else if (arr[m] == "Search") {
+                    ar = arr[m - 1];
+                    num1 = arr[m + 1];
+                    ar = ar.split(" ");
+                    var t = 0;
+                    for (var i = 0; i < ar.length; i++) {
+                        if (ar[i].toLowerCase() == num1.toLowerCase()) {
+                            t++;
+                            break;
+                        }
+                    }
+                    if (t > 0)
+                        $scope.result = "Yaay we found a match";
+                    else
+                        $scope.result = "Oh no! We cant find you";
+                }
+
+                else if (arr[m] == "Replace") {
+                    ar = arr[m - 1];
+                    num1 = arr[m + 1];
+                    num2 = arr[m + 2];
+                    $scope.result = ar.replace(num1, num2);
+                }
+                else if (arr[m] == "Join") {
+                    ar = arr[m - 1];
+                    num1 = arr[m + 1];
+                    $scope.result = ar.concat(" ", num1);
+                }
+                else if (arr[m] == "Days Ago") {
+                    var days = parseInt(arr[m - 1]);
+                    var date = new Date();
+                    var last = new Date(date.getTime() - (days * 24 * 60 * 60 * 1000));
+                    var day = last.getDate();
+                    var month = last.getMonth() + 1;
+                    var year = last.getFullYear();
+                    $scope.result = month + "/" + day + "/" + year;
+                }
+
+                else if (arr[m] == "Days Ahead") {
+                    days = parseInt(arr[m - 1]);
+                    date = new Date();
+                    last = new Date(date.getTime() + (days * 24 * 60 * 60 * 1000));
+                    day = last.getDate();
+                    month = last.getMonth() + 1;
+                    year = last.getFullYear();
+                    $scope.result = month + "/" + day + "/" + year;
+
+                }
+
+                else if (arr[m] == "Who's Greater") {
+                    num1 = arr[m-1];
+                    num2 = arr[m+1];
+                    if(Boolean(num1 > num2))
+                    $scope.result = "A is greater than B";
+                    else
+                    $scope.result = "A is greater than B";
+
+                }
+
+            }
         }
 
         if ($routeParams.pageId) {
@@ -130,6 +231,7 @@
 
         function addField(fieldType) {
             var field;
+
             switch (fieldType) {
                 case "LABEL":
                     field = {"label": "New Label", "type": "LABEL"};
@@ -163,18 +265,14 @@
                     break;
 
                 case "DATE":
-                    field = {"label": "New Date Field", "type": "DATE"};
-                    break;
-
-                case "LIST":
                     field = {
-                        "label": "New List", "type": "LIST", "options": [
-                            {"label": "Item 1", "value": "Item_1"},
-                            {"label": "Item 2", "value": "Item_2"},
-                            {"label": "Item 3", "value": "Item_3"}
+                        "label": "Date", "type": "OPTIONS", "options": [
+                            {"label": "Days Ago", "value": "Ago", "selected" : false},
+                            {"label": "Days Ahead", "value": "Ahead", "selected" : false}
                         ]
                     };
                     break;
+
 
                 case "OPTIONS":
                     field = {
@@ -189,17 +287,18 @@
 
                 case "ARITHMETIC":
                     field = {
-                        "label": "New Dropdown", "type": "OPTIONS", "options": [
-                            {"label": "Add", "value": "Add"},
-                            {"label": "Subtract", "value": "Subtract"},
-                            {"label": "Multiply", "value": "Multiply"}
+                        "label": "Arithmetic", "type": "OPTIONS", "options": [
+                            {"label": "Add", "value": "Add", "selected" : false},
+                            {"label": "Subtract", "value": "Subtract", "selected" : false},
+                            {"label": "Multiply", "value": "Multiply" , "selected" : false},
+                            {"label": "Divide", "value": "Divide", "selected" : false}
                         ]
                     };
                     break;
 
                 case "STRING":
                     field = {
-                        "label": "New Dropdown", "type": "OPTIONS", "options": [
+                        "label": "String", "type": "OPTIONS", "options": [
                             {"label": "Replace", "value": "Replace"},
                             {"label": "Search", "value": "Search"},
                             {"label": "Join", "value": "Join"},
@@ -210,10 +309,11 @@
 
                 case "BOOLEAN":
                     field = {
-                        "label": "New Dropdown", "type": "OPTIONS", "options": [
-                            {"label": "Add", "value": "Add"},
-                            {"label": "Subtract", "value": "Subtract"},
-                            {"label": "Multiply", "value": "Multiply"}
+                        "label": "Boolean", "type": "OPTIONS", "options": [
+                            {"label": "Logical AND", "value": "Logical AND"},
+                            {"label": "Logical OR", "value": "Logical OR"},
+                            {"label": "Logical XOR", "value": "Logical XOR"},
+                            {"label": "Who's Greater", "value": "Who's Greater"}
                         ]
                     };
                     break;

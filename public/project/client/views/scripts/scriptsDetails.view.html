@@ -3,22 +3,6 @@
         <div class="row">
             <div class="col-sm-10 col-sm-offset-2 col-md-11 col-md-offset-1 main">
                 <h1 align="center">{{model.page.title}}</h1>
-                <!--<button class="btn btn-primary form-control"
-                        ng-click="model.publish()">Add fields</button>-->
-
-                <!--<fieldset  data-ng-repeat="choice in choices">
-                    <input type="text" class="form-control" ng-model="choice.name" name=""
-                           placeholder="Enter mobile number">
-                </fieldset><br>
-                <button class="addfields btn btn-primary form-control"
-                        ng-click="model.addNewChoice()">Add fields</button>
-                <button class="addfields btn btn-primary form-control"
-                        ng-click="model.findSolution()">Find Solution</button>
-
-                <div id="choicesDisplay">
-                    {{ output }}
-                </div>
-                -->
 
                 <div class="form-horizontal">
                     <div ng-model="model.fields" jga-sortable jga-sortable-callback = "model.sortField(start,end)">
@@ -41,8 +25,8 @@
                                               class="form-control" placeholder="{{field.placeholder}}"></textarea>
                                     <input ng-model="field.date" ng-switch-when="DATE" type="date"
                                            class="form-control">
-                                    <select  ng-switch-when="OPTIONS" ng-model="field.option">
-                                        <option ng-repeat="option in field.options track by $index">{{option.label}}</option>
+                                    <select ng-switch-when="OPTIONS" ng-model="field.option">
+                                        <option ng-repeat="option in field.options track by $index" >{{option.label}}</option>
                                     </select>
                                 </div>
                                 <div class="input-group-btn">
@@ -57,6 +41,8 @@
                         <div><button class="btn btn-primary form-control"
                                      ng-click="model.publish()">Add fields</button></div>
                     </div>
+                    <div><input type="text" ng-model="result"/></div>
+                    <div>{{result}}</result>
 
                     <div class="col-sm-3 col-md-2 sidebar">
                         <ul class="nav nav-sidebar">
