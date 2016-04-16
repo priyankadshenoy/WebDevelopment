@@ -1,0 +1,66 @@
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=big5">
+    <script language=javascript>
+        var subCat=new Array();
+        subCat[1]={2:"Computer Book",9:"Grammar Book"};
+        subCat[3]={4:"Digital Watch",5:"Analogue Watch"};
+        subCat[6]={7:"Android Phone",8:"IPhone"};
+
+        function change_sub_cat(v)
+        {
+            var cat_id=v.options[v.selectedIndex].value;
+            var subCats=subCat[cat_id];
+            var subCatDropDown=document.getElementsByName("subCat_id")[0];
+            clearDropDown("subCat_id");
+            for (subCat_id in subCats)
+            {
+                option=new Option(subCats[subCat_id],subCat_id);
+                subCatDropDown.options[subCatDropDown.options.length]=option;
+            }
+        }
+        function clearDropDown(boxName)
+        {
+            var x=document.getElementsByName(boxName);
+            for (i=0;i<x[0].options.length;i++)
+            {
+                x[0].options[i]=null;
+            }
+            var allOptions=new Option("All",0);
+            x[0].options[0]=allOptions;
+        }
+    </script>
+</head>
+<body style="font-family:arial">
+<h1>Product</h1>
+<form name="choose" method="post" width="100%">
+    <table  cellpadding="2" border=0>
+        <tr>
+            <td align="right">
+                Category:
+            </td>
+            <td align=left>
+                <select name="cat_id" onchange="change_sub_cat(this)">
+                    <option value=1>Book</option>
+                    <option value=3>Watch</option>
+                    <option value=6>Mobile phone</option>
+                </select>
+            </td>
+            <td align="right">
+                Sub-Category:
+            </td>
+            <td align=left>
+                <select name="subCat_id" size=1>
+                    <option value=0>All</option>
+                    <option value=2>Computer Book</option>
+                    <option value=9>Grammar Book</option>
+                </select>
+            </td>
+            <td>
+                <input type="submit" value="Show selection">
+            </td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>

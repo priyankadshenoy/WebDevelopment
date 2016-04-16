@@ -1,0 +1,27 @@
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+
+<select id="select_1">
+    <option>1</option>
+    <option>2</option>
+</select>
+
+<select id="select_2">
+    <option>A</option>
+    <option>B</option>
+</select>
+
+<button onclick="javascript:CopyLists()">Copy Lists</button>
+
+<script type="text/javascript">
+    function CopyLists()
+    {
+        var list1 = $('#select_1');
+        var list2 = $('#select_2');
+        list2.find('option').remove();
+        list1.children().each(function () {
+            list2.append($("<option></option>").
+            attr("value",$(this).val()).
+            text($(this).text()));
+        });
+    }
+</script>

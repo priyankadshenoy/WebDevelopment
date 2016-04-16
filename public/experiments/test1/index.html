@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+<html ng-app="shanidkvApp">
+	<head>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular.min.js"></script>
+		<script type="text/javascript" src="js/script.js"></script>
+		<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
+
+	</head>
+	
+	<body>
+
+		<div class="container">
+
+			<div class="row">
+
+				<h3>AngularJS Dynamic Form Fields</h3>
+
+				<hr/>
+
+				<div ng-app="ProjectApp" ng-controller="MainCtrl">
+				   <fieldset  data-ng-repeat="choice in choices">
+
+				      <input type="text" ng-model="choice.name" name="" placeholder="Enter mobile number">
+
+				   </fieldset>
+				   <button class="addfields" ng-click="addNewChoice()">Add fields</button>
+				       
+				   <div id="choicesDisplay">
+				      {{ choices }}
+				   </div>
+				</div>
+				
+			</div>
+
+		</div>
+		
+		<p>&nbsp;</p>
+		<p>&nbsp;</p>
+		<p>&nbsp;</p>
+
+		<div class="footer">
+	    	<div class="container">
+	        	<p class="row text-muted">Copyright &copy; <script>document.write(new Date().getFullYear())</script>, <a href="http://www.shanidkv.com/">shanidkv.com</a></p>
+	    	</div>
+	    </div>
+
+	</body>
+</html>

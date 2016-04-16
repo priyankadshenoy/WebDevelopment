@@ -1,0 +1,41 @@
+<div ng-controller="PageDetailsController">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-10 col-sm-offset-2 col-md-11 col-md-offset-1 main">
+                <h1 align="center">{{model.page.title}}</h1>
+
+                <div class="form-horizontal">
+                    <div jga-sortable jga-axis = 'y'>
+                        <div ng-repeat="field in model.fields track by $index">
+                            <div class="input-group">
+                                <h1 ng-if="field.type == 'HEADER'">{{field.label}}</h1>
+                                <ul ng-if="field.type == 'LIST'"><li ng-repeat="item in field.options">{{item.label}}</li></ul>
+                                <p  ng-if= "field.type == 'PARAGRAPH'" align="justify" >{{field.placeholder}}</p>
+                                <label ng-if ="field.type == 'LABEL'">{{field.label}}</label>
+                                <button ng-if = "field.type == 'BUTTON'" class="btn btn-primary">{{field.label}}</button>
+                            </div>
+                            <label ng-hide = "field.type == 'HEADER' || field.type == 'LIST' || field.type == 'LABEL' || field.type =='PARAGRAPH'|| field.type =='BUTTON'">
+                                {{field.label}}
+                            </label>
+                                <div class="input-group-btn">
+                                    <button ng-click ="model.editField(field)"       class="btn btn-warning" data-toggle="modal" data-target="#editField"><span class="glyphicon glyphicon-pencil"></span></button>
+                                    <button ng-click ="model.repeatField(field)"     class="btn btn-success"><span class="glyphicon glyphicon-plus"></span></button>
+                                    <button ng-click ="model.deleteField(field._id)" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></button>
+                                    <a class="btn btn-info"><span class="glyphicon glyphicon-menu-hamburger"></span></a>
+                                </div>
+                            </div>
+                            <br>
+                        </div>
+                    </div>
+           </div>
+    </div>
+
+                <div class="modal-footer">
+                    <button  type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    <button ng-click="model.commitEdit()" type="button" class="btn btn-default" data-dismiss="modal">OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

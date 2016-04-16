@@ -54,7 +54,7 @@ a {
 body {
     padding-top:70px;
     background-image: url("p1.jpg") ;
-    background-repeat: no-repeat;
+    background-repeat: repeat-y;
 }
 
 

@@ -1,0 +1,45 @@
+<body>
+<div ng-app='ProjectApp'>
+    <div ng-controller="questionCtrl">
+        <div>
+            <ul>
+                <li ng-repeat="elemnt in questionelemnt">
+
+                    <div>
+                        <div id={{elemnt.id}} style="display:inline" >
+                            <span  ng-model="elemnt.question" ng-hide="editorEnabled" ng-click="editorEnabled=true">
+                                {{elemnt.question}}
+                            </span>
+                            <div  ng-show="editorEnabled">
+                                <input  ng-model="elemnt.question" ng-show="editorEnabled" >
+                                <button href="#" ng-click="editorEnabled=false">Done editing</button>
+                            </div>
+                        </div>
+                        <div style="display:inline">
+                            <span>
+                                <input type="text" ng-model="elemnt.answer" placeholder="Answer" required/>
+                            </span>
+                        </div>
+
+                        <span ng-hide="elemnt.length == 1">
+
+                             <button ng-click="questionelemnt.splice($index, 1)">Remove</button>
+
+                        </span>
+                    </div>
+                    <hr/>
+                </li>
+                <li>
+                    <button ng-click="addFormField($event)">Add</button>
+                </li>
+            </ul>
+        </div>
+        <div>
+            <button ng-click="showitems($event)">Submit</button>
+        </div>
+        <div id="displayitems" style="visibility:hidden;">
+            {{questionelemnt}}
+        </div>
+    </div>
+</div>
+</body>
