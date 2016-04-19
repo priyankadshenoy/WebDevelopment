@@ -132,6 +132,12 @@
                 controllerAs: "model"
             })
 
+            .when("/underconsscripts", {
+                templateUrl: "views/scripts/scriptsDetailsEdit.html",
+                controller: "ScriptDetailsController",
+                controllerAs: "model"
+            })
+
             .otherwise({
                 redirectTo: "login"
             })

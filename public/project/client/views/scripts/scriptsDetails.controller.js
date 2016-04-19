@@ -20,89 +20,17 @@
 
         vm.findSolution = findSolution;
         vm.publish = publish;
-        vm.findpublish =findpublish;
         vm.sortField = sortField;
 
         var arr= new Array();
         $scope.result;
-        $scope.godhelp;
-        var gh= new Array();
-        var test = new Array();
-        var temp1= new Array();
-        var temp2= new Array();
-        var v1= new Array();
-        var then=0;
-        var els=0;
+
 
         var currentUser = $rootScope.currentUser;
 
-        /*----------------------------------------------------------------------------------------------------*/
-
-        var temp=0;
-        function findpublish(){
-            var ct2=0;
-            for (var tt = 0; tt < vm.fields.length; tt++) {
-                if(vm.fields[tt].label=== "Input"){
-                    test[tt]= vm.fields[tt].name;
-                    ct2++;
-                }
-            }
-            var count=0;
-            console.log(vm.fields.length - ct2);
-            for (var li = 0; li < vm.fields.length; li++) {
-                for (var lii = 0; lii < vm.fields.length - ct2; lii++) {
-                    if (test[li] == vm.fields[lii].label) {
-                        if (!(vm.fields[lii].name === undefined)){
-                            temp1[count] = vm.fields[lii].name;
-                            count++;
-                        }
-                        else {
-                            temp2[count] = vm.fields[lii].option;
-                            count++;
-                        }
-                    }
-                }
-            }
-
-            for(var s=0; s< count ; s++){
-                if(temp2[s] == "Multiply" && s==1){
-                    temp= parseInt(temp1[s-1]) * parseInt(temp1[s+1]);
-                }
-                else if(temp2[s] == "Add" && s==1){
-                    temp=parseInt(temp1[s-1]) + parseInt(temp1[s+1]);
-                }
-                else if(temp2[s] == "Divide" && s==1){
-                    temp=parseInt(temp1[s-1]) / parseInt(temp1[s+1]);
-                }
-                if(temp2[s] == "Subtract" && s==1){
-                    temp=parseInt(temp1[s-1]) - parseInt(temp1[s+1]);
-                }
-                if(temp2[s]=="Add")
-                {
-                    temp= temp + parseInt(temp1[s+1]);
-                }
-                if(temp2[s]=="Subtract")
-                {
-                    temp= temp - parseInt(temp1[s+1]);
-                }
-                if(temp2[s]=="Multiply")
-                {
-                    temp= temp * parseInt(temp1[s+1]);
-                }
-                if(temp2[s]=="Divide")
-                {
-                    temp= temp / parseInt(temp1[s+1]);
-                }
-            }
-            $scope.result="Solution :"+temp;
-            }
-
-        /*----------------------------------------------------------------------------------------------------*/
-
-        function publish() {
+        function publish(res) {
 
             for (var l = 0; l < vm.fields.length; l++) {
-                gh[l]=vm.fields[l].label;
                 if (!(vm.fields[l].name === undefined))
                     arr[l] = vm.fields[l].name;
 
@@ -117,52 +45,28 @@
                 else
                     console.log($scope.result = "Invalid Data");
             }
-            $scope.godhelp=gh;
-            var omg=false;
-
             for (var m = 0; m < arr.length; m++) {
                 if (arr[m] == "Multiply" && m == 1)
-                    $scope.result="Solution :"+ parseFloat(arr[m - 1]) * parseFloat(arr[m + 1]);
-                else if(arr[m] == "Multiply" && omg== true && m>1)
-                    $scope.result="Solution :"+ parseFloat(arr[m - 1]) * parseFloat(arr[m + 1]);
-
-                else if(arr[m] == "Add" && omg== true && m>1)
-                    $scope.result="Solution :"+ parseFloat(arr[m - 1]) + parseFloat(arr[m + 1]);
+                    $scope.result = parseFloat(arr[m - 1]) * parseFloat(arr[m + 1]);
                 else if (arr[m] == "Add" && m == 1)
-                    $scope.result="Solution :"+ parseFloat(arr[m - 1]) + parseFloat(arr[m + 1]);
-
-                else if (arr[m] == "Subtract" && m == 1){
-                    console.log("hi");
-                    $scope.result="Solution :"+ parseFloat(arr[m - 1]) - parseFloat(arr[m + 1]);}
-                else if(arr[m] == "Subtract" && omg== true && m>1){
-                    console.log("why" +m + "  "+ parseInt(arr[m-1]));
-                    $scope.result="Solution :"+ (parseFloat(arr[m - 1]) - parseFloat(arr[m + 1]));}
-
-
-
+                    $scope.result = parseFloat(arr[m - 1]) + parseFloat(arr[m + 1]);
+                else if (arr[m] == "Subtract" && m == 1)
+                    $scope.result = parseFloat(arr[m - 1]) - parseFloat(arr[m + 1]);
                 else if (arr[m] == "Divide" && m == 1)
-                    $scope.result="Solution :"+parseFloat(arr[m - 1]) / parseFloat(arr[m + 1]);
-                else if(arr[m] == "Divide" && omg== true && m>1)
-                    $scope.result="Solution :"+ parseFloat(arr[m - 1]) / parseFloat(arr[m + 1]);
-
+                    $scope.result = parseFloat(arr[m - 1]) / parseFloat(arr[m + 1]);
                 else if (arr[m] == "Divide")
-                    $scope.result="Solution :"+$scope.result / parseFloat(arr[m + 1]);
+                    $scope.result = $scope.result / parseFloat(arr[m + 1]);
                 else if (arr[m] == "Multiply")
-                    $scope.result="Solution :"+$scope.result * parseFloat(arr[m + 1]);
+                    $scope.result = $scope.result * parseFloat(arr[m + 1]);
                 else if (arr[m] == "Add")
-                    $scope.result="Solution :"+$scope.result + parseFloat(arr[m + 1]);
-
-
-                else if (arr[m] == "Subtract" && omg==false){
-                    console.log(m+"jjj");
-                    $scope.result="Solution :"+$scope.result - parseFloat(arr[m + 1]);}
-
-
+                    $scope.result = $scope.result + parseFloat(arr[m + 1]);
+                else if (arr[m] == "Subtract")
+                    $scope.result = $scope.result - parseFloat(arr[m + 1]);
                 else if (arr[m] == "Slice") {
                     var ar = arr[m - 1];
                     var num1 = arr[m + 1];
                     var num2 = arr[m + 2];
-                    $scope.result="Solution :"+ ar.substr(parseInt(num1), parseInt(num2));
+                    $scope.result = ar.substr(parseInt(num1), parseInt(num2));
 
                 }
                 else if (arr[m] == "Search") {
@@ -186,15 +90,13 @@
                     ar = arr[m - 1];
                     num1 = arr[m + 1];
                     num2 = arr[m + 2];
-                    $scope.result="Solution :"+ ar.replace(num1, num2);
+                    $scope.result = ar.replace(num1, num2);
                 }
-
                 else if (arr[m] == "Join") {
                     ar = arr[m - 1];
                     num1 = arr[m + 1];
-                    $scope.result="Solution :"+ ar.concat(" ", num1);
+                    $scope.result = ar.concat(" ", num1);
                 }
-
                 else if (arr[m] == "Days Ago") {
                     var days = parseInt(arr[m - 1]);
                     var date = new Date();
@@ -202,7 +104,7 @@
                     var day = last.getDate();
                     var month = last.getMonth() + 1;
                     var year = last.getFullYear();
-                    $scope.result="Solution :"+ month + "/" + day + "/" + year;
+                    $scope.result = month + "/" + day + "/" + year;
                 }
 
                 else if (arr[m] == "Days Ahead") {
@@ -212,7 +114,7 @@
                     day = last.getDate();
                     month = last.getMonth() + 1;
                     year = last.getFullYear();
-                    $scope.result="Solution :"+ month + "/" + day + "/" + year;
+                    $scope.result = month + "/" + day + "/" + year;
 
                 }
 
@@ -220,91 +122,9 @@
                     num1 = arr[m-1];
                     num2 = arr[m+1];
                     if(Boolean(num1 > num2))
-                        $scope.result="Solution :"+ "A is greater than B";
+                        $scope.result = "A is greater than B";
                     else
-                        $scope.result="Solution :"+ "A is greater than B";
-
-                }
-
-                else if (arr[m] == "If"){
-                    for(var te = m+1 ; te<arr.length ;te++)
-                    {
-                        if(arr[te]== "Then")
-                        then= te+1;
-                        else if(arr[te]=="Else")
-                        els= te+1;
-                    }
-
-                    var v1= arr[m+1];
-                    var v2 = arr[m+2];
-                    var v3= arr[m+3];
-                    if(v2=="Who's Greater") {
-                        if (parseInt(v1) > parseInt(v3)) {
-                            m = parseInt(then);
-                            omg = true;
-                            if(then==arr.length-1){
-                                $scope.result="Solution :"+arr[arr.length-1];
-                            }
-                            continue;
-                        }
-                        else {
-                            m = els;
-                            omg=true;
-                            if(els==arr.length-1){
-                                $scope.result="Solution :"+arr[arr.length-1];
-                            }
-                            continue;
-                        }
-                    }
-                    else if(v2=="Search"){
-                        v1 = v1.split(" ");
-                        var til = 0;
-                        for (var il = 0; il < ar.length; il++) {
-                            if (v1[i].toLowerCase() == v3.toLowerCase()) {
-                                t++;
-                                break;
-                            }
-                        }
-                        if (t > 0) {
-                            m = parseInt(then);
-                            omg = true;
-                            if(then==arr.length-1){
-                                $scope.result="Solution :"+arr[arr.length-1];
-                            }
-                            continue;
-                        }
-                        else {
-                            m = els;
-                            if(els==arr.length-1){
-                                $scope.result="Solution :"+arr[arr.length-1];
-                            }
-                            continue;
-                        }
-                    }
-                    else if(v2=="Then")
-                    {
-                       if(v1!=0){
-                          // console.log(then-els);
-                            if(then==arr.length-1 || els-then == 2)
-                             $scope.result="Solution :"+ v3;
-                       }
-                        else if(v1!=0 && then!=arr.length-1){
-                           m=then;
-                           continue;
-                       }
-                        else if(v1==0 && els==arr.length-1)
-                            $scope.result="Solution :"+ arr[els];
-
-                        else if(v1==0 && then!=arr.length-1){
-                            m=els;
-                            continue;
-                        }
-
-                    }
-
-
-                    console.log(m+"if end")
-
+                        $scope.result = "A is greater than B";
 
                 }
 
@@ -476,24 +296,6 @@
                     };
                     break;
 
-                case "TEST":
-                        field = {
-                            "label": "Input", "type": "OPTIONS", "options": [
-                                {"label": gh[0], "value": gh[0], "selected": false},
-                                {"label": gh[1], "value": gh[1], "selected": false},
-                                {"label": gh[2], "value": gh[2], "selected": false},
-                                {"label": gh[3], "value": gh[3], "selected": false},
-                                {"label": gh[4], "value": gh[4], "selected": false},
-                                {"label": gh[5], "value": gh[5], "selected": false},
-                                {"label": gh[6], "value": gh[6], "selected": false},
-                                {"label": gh[7], "value": gh[7], "selected": false},
-                                {"label": gh[8], "value": gh[8], "selected": false},
-                                {"label": gh[9], "value": gh[9], "selected": false}
-                            ]
-                        };
-
-                    break;
-
                 case "STRING":
                     field = {
                         "label": "String", "type": "OPTIONS", "options": [
@@ -511,10 +313,7 @@
                             {"label": "Logical AND", "value": "Logical AND"},
                             {"label": "Logical OR", "value": "Logical OR"},
                             {"label": "Logical XOR", "value": "Logical XOR"},
-                            {"label": "Who's Greater", "value": "Who's Greater"},
-                            {"label": "If", "value": "If"},
-                            {"label": "Then", "value": "Then"},
-                            {"label": "Else", "value": "Else"}
+                            {"label": "Who's Greater", "value": "Who's Greater"}
                         ]
                     };
                     break;

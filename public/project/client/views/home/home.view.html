@@ -7,15 +7,22 @@
 
 <div class="container row">
     <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
-        <h3>List of Applications</h3>
-        <!--<a href="#/newapp"
-           class="btn btn-info form-control" role="button">Look for all applications</a>-->
-        <a href="#/findScripts"
-           class="btn btn-info form-control" role="button">Find All Scripts </a>
-       <!-- <button class="btn btn-primary form-control"
-                ng-click="model.findPages()">Find Pages</button>
-        <div>{{pages}}</div>-->
-        <!--<div ng-init="init()">Hello</div>-->
+        <h3>List of Generated Scripts</h3>
+        <div ng-controller = "HomeController">
+            <div class="container row">
+                <div class="col-md-offset-1 col-xs-offset-1 col-sm-offset-1 col-lg-offset-1 col-xs-10 col-sm-10 col-md-10 col-lg-10">
+                    <table class="table table-striped table-bordered">
+                        <tr>
+                            <th>Script Name</th>
+                            <!--<th>Action</th>-->
+                        </tr>
+                        <tr ng-repeat="page in model.pages">
+                            <td> <a href="#/page/{{page._id}}/fields">{{page.title}}</a></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
     </div>
-    </div>
+</div>
 </div>
