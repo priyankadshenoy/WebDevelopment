@@ -29,6 +29,14 @@
     margin-right: -1px;
 }
 
+.table-fsize{
+    font-size: 15px;
+}
+
+.form-fsize{
+    font-size: 12px;
+}
+
 .incrsize {
     font-size: 130%;
 }
