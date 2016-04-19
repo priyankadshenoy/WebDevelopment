@@ -52,9 +52,12 @@ a {
 }
 
 body {
-    padding-top:70px;
-    background-image: url("p1.jpg") ;
-    background-repeat: repeat-y;
+    padding-top: 70px;
+    background: url(p1.jpg) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
 }
 
 
