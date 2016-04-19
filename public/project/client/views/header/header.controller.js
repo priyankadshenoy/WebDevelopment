@@ -7,11 +7,13 @@
         var vm = this;
         vm.logout = logout;
 
+
         function init() {
 
         }
 
         init();
+
 
         function logout() {
             UserService.logout()
