@@ -24,7 +24,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(multer());
 
 app.use(session({
-    secret: 'shenoy',
+    secret: process.env.SESSION_SECRET,
     resave: true,
     saveUninitialized: true
 }));
@@ -38,5 +38,5 @@ app.get('/hello', function(req, res){
 });
 
 require("./public/assignment/server/app.js")(app, db , mongoose);
-require("./public/project/server/app.js")(app, db, mongoose);
+
 app.listen(port, ipaddress);
