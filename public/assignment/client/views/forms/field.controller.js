@@ -1,4 +1,5 @@
 (function(){
+    'use strict';
     angular
         .module("FormBuilderApp")
         .controller("FieldController", fieldController);
@@ -125,7 +126,7 @@
                 .deleteFieldFromForm(formId, fieldId)
                 .then(function(response) {
                     console.log(response.data);
-                    vm.fields.splice(index,1);
+                   vm.fields.splice(index,1);
                 });
         }
 
@@ -186,29 +187,29 @@
         function updateField(field) {
             if(!field.placeholder) {
 
-                if(!field.options) {
-                    updatedField = {
-                        label: field.label
-                    };
-                }
-
-                else {
-                    var updatedField;
-                    var opts = vm.options;
-                    var op = [];
-                    var fieldOpts = opts.split("\n");
-                    for(var i in fieldOpts) {
-                        var lv = fieldOpts[i].split(":");
-                        op.push({
-                            label : lv[0],
-                            value : lv[1]
-                        });
+                    if(!field.options) {
+                        updatedField = {
+                            label: field.label
+                        };
                     }
-                    updatedField = {
-                        label: field.label,
-                        options : op
-                    };
-                }
+
+                    else {
+                        var updatedField;
+                        var opts = vm.options;
+                        var op = [];
+                        var fieldOpts = opts.split("\n");
+                        for(var i in fieldOpts) {
+                            var lv = fieldOpts[i].split(":");
+                            op.push({
+                               label : lv[0],
+                               value : lv[1]
+                            });
+                        }
+                        updatedField = {
+                            label: field.label,
+                            options : op
+                        };
+                    }
             }
             else {
                 updatedField = {
@@ -241,3 +242,4 @@
         }
     }
 })();
+
