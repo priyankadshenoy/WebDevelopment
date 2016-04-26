@@ -24,13 +24,13 @@
 
                 <li ng-show="currentUser"  ng-class="{'active': $location.url() == '/home'}"
                     data-toggle="collapse" data-target=".navbar-collapse.in">
-                    <a href="#/home">Home</a></li>
+                    <a href="#/home">Generated Scripts</a></li>
 
 
                 <li ng-class="{'active': $location.url() == '/scripts'}"
                     ng-show="currentUser.username=='ps'"
                     data-toggle="collapse" data-target=".navbar-collapse.in">
-                    <a href="#/scripts">Scripts</a></li>
+                    <a href="#/scripts">Create Scripts</a></li>
 
                     <li ng-class="{'active': $location.url() == '/underconsscripts'}"
                         ng-show="currentUser.username=='ps'"

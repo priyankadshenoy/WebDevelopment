@@ -44,63 +44,6 @@
                 controllerAs: "model"
             })
 
-            .when("/newapp", {
-                templateUrl: "views/home/newapplication.view.html"
-            })
-
-            .when("/string", {
-                templateUrl: "views/functionality/string/string.view.html",
-                controller: "StringController",
-                controllerAs: "model"
-            })
-
-            .when("/stringreplace", {
-                templateUrl: "views/functionality/string/stringreplace.view.html",
-                controller: "StringController",
-                controllerAs: "model"
-            })
-
-            .when("/stringjoin", {
-                templateUrl: "views/functionality/string/stringjoin.view.html",
-                controller: "StringController",
-                controllerAs: "model"
-            })
-
-            .when("/stringslice", {
-                templateUrl: "views/functionality/string/stringslice.view.html",
-                controller: "StringController",
-                controllerAs: "model"
-            })
-
-            .when("/arithmetic", {
-                templateUrl: "views/functionality/arithmetic/arithmetic.view.html",
-                controller: "ArithmeticController",
-                controllerAs: "model"
-            })
-
-            .when("/date", {
-                templateUrl: "views/functionality/date/date.view.html",
-                controller: "DateController",
-                controllerAs: "model"
-            })
-
-            .when("/datemanipulate", {
-                templateUrl: "views/functionality/date/datemanipulate.view.html",
-                controller: "DateController",
-                controllerAs: "model"
-            })
-
-            .when("/boolean", {
-                templateUrl: "views/functionality/boolean/boolean.view.html",
-                controller: "BooleanController",
-                controllerAs: "model"
-            })
-
-            .when("/booleanlogical", {
-                templateUrl: "views/functionality/boolean/booleanlogical.view.html",
-                controller: "BooleanController",
-                controllerAs: "model"
-            })
 
             .when("/scripts", {
                 templateUrl: "views/scripts/scripts.view.html",
@@ -109,11 +52,6 @@
                 resolve: {loggedin: checkLoggedin}
             })
 
-            .when("/admin", {
-                templateUrl: "views/admin/admin.view.html",
-                controller: "adminController",
-                controllerAs: "model"
-            })
 
             .when("/PageDetails", {
                 templateUrl: "views/scripts/scriptsDetails.view.html",
@@ -138,8 +76,7 @@
 
             .when("/underconsscripts", {
                 templateUrl: "views/scripts/scriptsDetailsEdit.html",
-                controller: "ScriptDetailsController",
-                controllerAs: "model"
+                resolve: {loggedin: checkLoggedin}
             })
 
             .otherwise({
