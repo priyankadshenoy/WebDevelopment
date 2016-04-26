@@ -14,6 +14,10 @@
                 resolve: {loggedin: checkCurrentUser}
             })
 
+            .when("/homeheader", {
+                templateUrl: "views/home/hometopbar.view.html",
+            })
+
             .when("/findScripts", {
                 templateUrl: "views/home/findScripts.view.html",
                 controller: "HomeController",

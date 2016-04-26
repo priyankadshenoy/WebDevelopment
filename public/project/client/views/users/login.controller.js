@@ -23,6 +23,7 @@
                         $location.url("/profile");
                     },
                     function(err){
+                        console.log("hello");
                         vm.message = "Username or password incorrect";
                     }
                 );

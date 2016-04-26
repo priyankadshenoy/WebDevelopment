@@ -15,7 +15,11 @@
 
         function init(){
 
+
         }init();
+
+
+
 
         function update(username,password,firstName,lastName,emails) {
             vm.message = null;

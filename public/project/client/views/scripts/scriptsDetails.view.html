@@ -1,3 +1,235 @@
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>Bootply snippet - Bootply Bootstrap Preview</title>
+    <meta name="generator" content="Bootply" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="" />
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+
+    <!--[if lt IE 9]>
+    <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link rel="apple-touch-icon" href="/bootstrap/img/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/bootstrap/img/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/bootstrap/img/apple-touch-icon-114x114.png">
+
+
+
+
+
+
+
+
+
+
+    <!-- CSS code from Bootply.com editor -->
+
+    <style type="text/css">
+        /* CSS used here will be applied after bootstrap.css */
+        /*
+         * Slidebar (add to your bootstrap)
+         */
+
+
+        .slidebar-form {
+            padding: 7px 15px 13px 15px;
+        }
+        .slidebar-nav {
+            left: 250px;
+            list-style: none;
+            height: 100%;
+            margin: 0;
+            margin-left: -250px;
+            overflow-y: auto;
+            padding: 0;
+            position: fixed;
+            top: 50px;
+            width: 0;
+            z-index: 1000;
+            -webkit-transition: all 0.5s ease;
+            -moz-transition: all 0.5s ease;
+            -o-transition: all 0.5s ease;
+            transition: all 0.5s ease;
+        }
+        #wrapper.toggled .slidebar-nav {
+            width: 250px;
+        }
+        .slidebar-nav .navbar-collapse {
+            padding: 0;
+            max-height: none;
+        }
+        .slidebar-nav ul {
+            float: none;
+            width: 100%;
+        }
+        .slidebar-nav ul:not {
+            display: block;
+        }
+        .slidebar-nav li {
+            float: none;
+            display: block;
+        }
+        .slidebar-nav li a {
+            padding-top: 12px;
+            padding-bottom: 12px;
+        }
+        .slidebar-nav .open .dropdown-menu {
+            position: static;
+            float: none;
+            width: auto;
+            margin: 0;
+            padding: 5px 0;
+            background-color: transparent;
+            border: 0;
+            -webkit-box-shadow: none;
+            box-shadow: none;
+        }
+        .slidebar-nav .open .dropdown-menu > li > a {
+            padding: 5px 15px 5px 25px;
+        }
+        .slidebar-nav .navbar-brand {
+            width: 100%;
+        }
+        .slidebar-nav .open > a > b.caret {
+            border-top: none;
+            border-bottom: 4px solid;
+        }
+        .slidebar-nav .navbar-nav {
+            margin: 0;
+        }
+
+        #wrapper {
+            padding-left: 0;
+            -webkit-transition: all 0.5s ease;
+            -moz-transition: all 0.5s ease;
+            -o-transition: all 0.5s ease;
+            transition: all 0.5s ease;
+        }
+        #wrapper.toggled {
+            padding-left: 250px;
+        }
+        #page-wrapper6 {
+            width: 100%;
+            position: absolute;
+            padding: 15px;
+            top: 50px;
+        }
+        #wrapper.toggled #page-wrapper6 {
+            position: absolute;
+            margin-right: -250px;
+        }
+        @media(min-width:768px) {
+            #wrapper {
+                padding-left: 250px;
+            }
+            #wrapper.toggled {
+                padding-left: 0;
+            }
+            #page-wrapper6 {
+                padding: 20px;
+                position: relative;
+            }
+            #wrapper.toggled #page-wrapper6 {
+                position: relative;
+                margin-right: 0;
+            }
+            .slidebar-nav {
+                width: 250px;;
+            }
+            #wrapper.toggled .slidebar-nav {
+                width: 0;
+            }
+        }
+
+        .slidebar-toggle {
+            position: relative;
+            float: left;
+            padding: 9px 10px;
+            margin-top: 8px;
+            margin-left: 15px;
+            margin-bottom: 8px;
+            background-color: transparent;
+            background-image: none;
+            border: 1px solid transparent;
+            border-radius: 4px;
+        }
+        .slidebar-toggle:focus {
+            outline: 0;
+        }
+        .slidebar-toggle .icon-bar {
+            display: block;
+            width: 22px;
+            height: 2px;
+            border-radius: 1px;
+        }
+        .slidebar-toggle .icon-bar + .icon-bar {
+            margin-top: 4px;
+        }
+        .navbar-default .slidebar-toggle {
+            border-color: transparent;
+        }
+        .navbar-default .slidebar-toggle:hover,
+        .navbar-default .slidebar-toggle:focus {
+            background-color: transparent;
+        }
+        .navbar-default .slidebar-toggle .icon-bar {
+            background-color: transparent;
+        }
+
+
+        #navbar-white.navbar-default {
+            font-size: 14px;
+        }
+        #navbar-white.navbar-default .navbar-nav>li>a:hover,
+        #navbar-white.navbar-default .navbar-nav>li>a:focus,
+        #navbar-white.navbar-default .navbar-nav>li>ul>li>a:hover,
+        #navbar-white.navbar-default .navbar-nav>li>ul>li>a:focus,
+        #navbar-white.navbar-default .navbar-nav>.active>a,
+        #navbar-white.navbar-default .navbar-nav>.active>a:hover,
+        #navbar-white.navbar-default .navbar-nav>.active>a:focus {
+            color: rgba(51, 51, 51, 1);
+            background-color: transparent;
+            background: -webkit-linear-gradient(top, transparent 0%, transparent 100%);
+            background: linear-gradient(to bottom, transparent 0%, transparent 100%);
+        }
+        #sidebar-white, #column-white, #dashboard-white, #slidebar-white {
+            background-color: transparent;
+        }
+        #navbar-white.navbar-default .navbar-toggle,
+        #navbar-white.navbar-default .slidebar-toggle {
+            border-color: transparent;
+        }
+        #navbar-white.navbar-default .navbar-toggle:hover,
+        #navbar-white.navbar-default .navbar-toggle:focus,
+        #navbar-white.navbar-default .slidebar-toggle:hover,
+        #navbar-white.navbar-default .slidebar-toggle:focus {
+            background-color: transparent;
+        }
+        #navbar-white.navbar-default .navbar-nav>li>a,
+        #navbar-white.navbar-default .navbar-nav>li>ul>li>a,
+        #navbar-white.navbar-default .navbar-brand {
+            color: #999999;
+        }
+        #navbar-white.navbar-default .navbar-toggle .icon-bar,
+        #navbar-white.navbar-default .navbar-toggle:hover .icon-bar,
+        #navbar-white.navbar-default .navbar-toggle:focus .icon-bar,
+        #navbar-white.navbar-default .slidebar-toggle .icon-bar,
+        #navbar-white.navbar-default .slidebar-toggle:hover .icon-bar,
+        #navbar-white.navbar-default .slidebar-toggle:focus .icon-bar {
+            background-color: #cccccc;
+        }
+    </style>
+    <script type='text/javascript'>
+        $(document).ready(function() {
+            $("#menu-toggle").click(function(e){e.preventDefault();$("#wrapper").toggleClass("toggled");});
+        });
+
+    </script>
+
+</head>
+
+
 <div ng-controller="ScriptDetailsController">
     <div class="container-fluid">
         <div class="row">
@@ -37,48 +269,68 @@
                             </div>
                             <br>
                         </div>
-                        <strong><div>{{result}}</div></strong>
+                        <strong><div>{{model.result}}</div></strong>
                         <div><button class="btn btn-primary form-control"
                                      ng-click="model.publish(field.option)">Result</button></div>
                     </div>
 
-
-                        <div class="col-sm-3 col-md-2 sidebar">
-                            <ul class="nav nav-sidebar">
-                                <li><p align="center"><strong>Elements</strong></p></li>
-
-                                <div data-ng-init="date='DATE';">
-                                    <button data-ng-attr-id="date" class="btn btn-block"
-                                            data-ng-click="model.addField(date)">Date</button>
-                                </div>
-
-                                <div data-ng-init="text='TEXT';">
-                                    <button data-ng-attr-id="text" class="btn btn-block"
-                                            data-ng-click="model.addField(text)">Text</button>
-                                </div>
-
-
-                                <div data-ng-init="textArea='TEXTAREA';">
-                                    <button data-ng-attr-id="textArea" class="btn btn-block"
-                                            data-ng-click="model.addField(textArea)">Text Area</button>
-                                </div>
-
-
-                                <div data-ng-init="arithmetic='ARITHMETIC';">
-                                    <button data-ng-attr-id="arithmetic" class="btn btn-block"
-                                            data-ng-click="model.addField(arithmetic)">Arithmetic</button>
-                                </div>
-                                <div data-ng-init="string='STRING';">
-                                    <button data-ng-attr-id="string" class="btn btn-block"
-                                            data-ng-click="model.addField(string)">String</button>
-                                </div>
-                                <div data-ng-init="boolean='BOOLEAN';">
-                                    <button data-ng-attr-id="boolean" class="btn btn-block"
-                                            data-ng-click="model.addField(boolean)">Boolean</button>
-                                </div>
-
-                            </ul>
+                    <nav id="navbar-white" class="navbar navbar-default navbar-fixed-top" role="navigation">
+                        <div class="navbar-header">
+                            <button href="#menu-toggle" class="slidebar-toggle" id="menu-toggle">
+                                <span class="sr-only">Toggle sidebar</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
                         </div>
+                    </nav>
+                                <div id="wrapper">
+                                    <div id="slidebar-white" class="slidebar-nav">
+                                        <nav id="navbar-white" class="navbar navbar-default" role="navigation">
+                                            <ul class="nav navbar-nav">
+                                                <li class="dropdown">
+                                                    <div data-ng-init="date='DATE';">
+                                                        <button data-ng-attr-id="date" class="btn btn-block"
+                                                                data-ng-click="model.addField(date)">Date</button><br>
+                                                    </div>
+                                                </li>
+                                                <li class="dropdown">
+                                                    <div data-ng-init="text='TEXT';">
+                                                        <button data-ng-attr-id="text" class="btn btn-block"
+                                                                data-ng-click="model.addField(text)">Text</button><br>
+                                                    </div>
+                                                </li>
+                                                <li class="dropdown">
+                                                    <div data-ng-init="textArea='TEXTAREA';">
+                                                        <button data-ng-attr-id="textArea" class="btn btn-block"
+                                                                data-ng-click="model.addField(textArea)">Text Area</button><br>
+                                                    </div>
+                                                </li>
+                                                <li class="dropdown">
+                                                    <div data-ng-init="arithmetic='ARITHMETIC';">
+                                                        <button data-ng-attr-id="arithmetic" class="btn btn-block"
+                                                                data-ng-click="model.addField(arithmetic)">Arithmetic</button><br>
+                                                    </div>
+                                                </li>
+                                                <li class="dropdown">
+                                                    <div data-ng-init="string='STRING';">
+                                                        <button data-ng-attr-id="string" class="btn btn-block"
+                                                                data-ng-click="model.addField(string)">String</button><br>
+                                                    </div>
+                                                </li>
+                                                <li class="dropdown">
+                                                    <div data-ng-init="boolean='BOOLEAN';">
+                                                        <button data-ng-attr-id="boolean" class="btn btn-block"
+                                                                data-ng-click="model.addField(boolean)">Boolean</button>
+                                                    </div>
+
+                                                </li>
+
+
+                                            </ul>
+                                        </nav>
+                                    </div>
+
                     </div>
                 </div>
             </div>

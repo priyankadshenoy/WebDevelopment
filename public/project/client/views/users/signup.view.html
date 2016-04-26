@@ -1,6 +1,54 @@
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0">
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500">
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/css/form-elements.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+
+</head>
 <div ng-controller="SignUpController">
-<h1>Sign Up</h1>
-<div ng-show="model.message" class="alert alert-danger" role="alert">{{model.message}}</div>
+    <div class="top-content">
+        <div class="inner-bg">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-8 col-sm-offset-2 text">
+                        <h1><strong>Sign Up to Script Editor</strong></h1>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6 col-sm-offset-3 form-box">
+                        <div class="form-bottom">
+                            <form role="form" action="" method="post" class="login-form">
+                                <div class="form-group">
+                                    <label class="sr-only" for="username">Username</label>
+                                    <input type="text" ng-model="model.user.username" class="form-control" id="username" placeholder="Username">
+                                </div>
+                                <div class="form-group">
+                                    <label class="sr-only" for="inputPassword">Password</label>
+                                    <input type="password" ng-model="model.user.password" class="form-control" id="inputPassword" placeholder="Password">
+                                </div>
+                                <div class="form-group">
+                                    <label class="sr-only" for="inputPassword">Password</label>
+                                    <input type="password" ng-model="model.user.password2" class="form-control" id="password2" placeholder="Verify Password">
+                                </div>
+                                <div class="form-group">
+                                    <label class="sr-only" for="inputPassword">Password</label>
+                                    <input type="email" ng-model="model.user.emails" class="form-control" id="email" placeholder="Email">
+                                </div>
+                                <a ng-click="model.signUp(model.user)" class="btn btn-primary btn-block" role="button">Sign Up</a>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<!--
+    <h1>Sign Up</h1>
+    <div class="col-sm-6 col-sm-offset-3 form-box">
+    <div ng-show="model.message" class="alert alert-danger" role="alert">{{model.message}}</div>
 
     <form class="form-horizontal">
         <div class="form-group">
@@ -36,5 +84,9 @@
                 <a ng-click="model.signUp(model.user)" class="btn btn-primary btn-block" role="button">Sign Up</a>
             </div>
         </div>
-    </form>
+    </form>-->
 </div>
+<script src="assets/js/jquery-1.11.1.min.js"></script>
+<script src="assets/bootstrap/js/bootstrap.min.js"></script>
+<script src="assets/js/jquery.backstretch.min.js"></script>
+<script src="assets/js/scripts.js"></script>
