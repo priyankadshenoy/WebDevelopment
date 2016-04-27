@@ -266,7 +266,7 @@
                             m = parseInt(then);
                             omg = true;
                             if(m == arr.length-1 || els-then == 2){
-                                vm.result="Solution :"+arr[arr.length-1];
+                                vm.result="Solution :"+arr[m];
                                 omg= false;
                                 break;
                             }

@@ -101,6 +101,25 @@ body {
     }
 }
 
+
+@media screen and (max-width: 600px) {
+    p,input,div, h4 {
+        font-size: 100%;
+    }
+    .btn,span{
+        font-size: 90%;
+    }
+    h1 {
+        font-size: 20px;
+    }
+    h2 {
+        font-size: 18px;
+    }
+    h3 {
+        font-size: 16px;
+    }
+}
+
 .text-nowrap{
     white-space: nowrap;
 }
@@ -124,5 +143,17 @@ select {
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
+}
+
+.mobiledisp
+{
+    display: inline;
+}
+
+@media (min-width: 700px)
+{
+    .mobiledisp {
+        visibility: hidden;
+    }
 }
 

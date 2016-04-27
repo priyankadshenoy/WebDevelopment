@@ -77,11 +77,11 @@
             .when("/underconsscripts", {
                 templateUrl: "views/scripts/scriptsDetailsEdit.html",
                 resolve: {loggedin: checkLoggedin}
-            })
+            });
 
-            .otherwise({
+            /*.otherwise({
                 redirectTo: "login"
-            })
+            })*/
     }
 
     var checkLoggedin = function ($q, $timeout, $http, $location, $rootScope) {
